@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
+import Footer from "@/components/Footer";
 import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
