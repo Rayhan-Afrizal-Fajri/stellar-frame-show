@@ -72,6 +72,7 @@ const Projects = () => (
         ))}
       </div>
     </div>
+    <Footer />
   </PageTransition>
 );
 

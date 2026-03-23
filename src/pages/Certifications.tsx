@@ -41,6 +41,7 @@ const Certifications = () => (
         ))}
       </div>
     </div>
+    <Footer />
   </PageTransition>
 );
 
