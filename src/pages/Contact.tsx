@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PageTransition from "@/components/PageTransition";
+import Footer from "@/components/Footer";
 import { Github, Linkedin, Twitter, Send } from "lucide-react";
 import { toast } from "sonner";
 
@@ -97,6 +98,7 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
+      <Footer />
     </PageTransition>
   );
 };

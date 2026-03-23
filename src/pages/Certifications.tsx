@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
+import Footer from "@/components/Footer";
 import { Award } from "lucide-react";
 
 const certs = [
@@ -40,6 +41,7 @@ const Certifications = () => (
         ))}
       </div>
     </div>
+    <Footer />
   </PageTransition>
 );
 
