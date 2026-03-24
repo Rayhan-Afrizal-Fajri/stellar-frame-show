@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Download, Mail, ExternalLink, Github, ArrowRight, Briefcase } from "lucide-react";
+import { MapPin, Download, Mail, ArrowRight, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
@@ -103,18 +103,22 @@ const Index = () => (
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {recentProjects.map((project, i) => (
-            <motion.div key={project.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="glass-card-hover p-5 flex flex-col gap-3">
-              <h3 className="font-semibold text-foreground">{project.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{project.description}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tech.map((t) => (
-                  <span key={t} className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-accent text-accent-foreground">{t}</span>
-                ))}
-              </div>
-              <div className="flex gap-3 pt-1">
-                <a href={project.demo} className="inline-flex items-center gap-1 text-sm text-foreground font-medium hover:text-muted-foreground transition-colors"><ExternalLink size={13} /> Demo</a>
-                <a href={project.github} className="inline-flex items-center gap-1 text-sm text-foreground font-medium hover:text-muted-foreground transition-colors"><Github size={13} /> GitHub</a>
-              </div>
+            <motion.div key={project.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
+              <Link to={`/projects/${project.slug}`} className="glass-card-hover p-5 flex flex-col gap-3 h-full group cursor-pointer">
+                {project.image && (
+                  <div className="rounded-lg overflow-hidden border border-border -mx-1 -mt-1">
+                    <img src={project.image} alt={project.title} className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </div>
+                )}
+                <h3 className="font-semibold text-foreground">{project.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span key={t} className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-accent text-accent-foreground">{t}</span>
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors pt-1">View Details →</span>
+              </Link>
             </motion.div>
           ))}
         </div>

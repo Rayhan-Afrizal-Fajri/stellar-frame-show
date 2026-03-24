@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
-import { ExternalLink, Github } from "lucide-react";
 import { projects, projectCategories, type ProjectCategory } from "@/data/portfolio";
 
 function countByCategory(cat: ProjectCategory) {
@@ -37,18 +37,22 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map((project, i) => (
-            <motion.div key={project.title} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: i * 0.07 }} className="glass-card-hover p-6 flex flex-col gap-4">
-              <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span key={t} className="text-xs font-mono px-2.5 py-1 rounded-full bg-accent text-accent-foreground">{t}</span>
-                ))}
-              </div>
-              <div className="flex gap-3 pt-2">
-                <a href={project.demo} className="inline-flex items-center gap-1.5 text-sm text-foreground font-medium hover:text-muted-foreground transition-colors"><ExternalLink size={14} /> Live Demo</a>
-                <a href={project.github} className="inline-flex items-center gap-1.5 text-sm text-foreground font-medium hover:text-muted-foreground transition-colors"><Github size={14} /> GitHub</a>
-              </div>
+            <motion.div key={project.title} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: i * 0.07 }}>
+              <Link to={`/projects/${project.slug}`} className="glass-card-hover p-6 flex flex-col gap-4 h-full group cursor-pointer">
+                {project.image && (
+                  <div className="rounded-xl overflow-hidden border border-border -mx-1 -mt-1">
+                    <img src={project.image} alt={project.title} className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </div>
+                )}
+                <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span key={t} className="text-xs font-mono px-2.5 py-1 rounded-full bg-accent text-accent-foreground">{t}</span>
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors pt-1">View Details →</span>
+              </Link>
             </motion.div>
           ))}
         </div>
