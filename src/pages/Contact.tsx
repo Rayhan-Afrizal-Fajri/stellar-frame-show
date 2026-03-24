@@ -1,14 +1,12 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PageTransition from "@/components/PageTransition";
+import Footer from "@/components/Footer";
 import { Github, Linkedin, Twitter, Send } from "lucide-react";
 import { toast } from "sonner";
+import { socials } from "@/data/portfolio";
 
-const socials = [
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter", href: "#" },
-];
+const iconMap = { github: Github, linkedin: Linkedin, twitter: Twitter, email: Send } as const;
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -28,72 +26,35 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="md:col-span-3 space-y-5"
-          >
+          <motion.form onSubmit={handleSubmit} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }} className="md:col-span-3 space-y-5">
             <div>
               <label className="text-sm font-medium text-foreground mb-1.5 block">Name</label>
-              <input
-                type="text"
-                required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-accent border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all text-sm"
-                placeholder="Your name"
-              />
+              <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-accent border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all text-sm" placeholder="Your name" />
             </div>
             <div>
               <label className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
-              <input
-                type="email"
-                required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-accent border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all text-sm"
-                placeholder="you@example.com"
-              />
+              <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-accent border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all text-sm" placeholder="you@example.com" />
             </div>
             <div>
               <label className="text-sm font-medium text-foreground mb-1.5 block">Message</label>
-              <textarea
-                required
-                rows={5}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-accent border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all text-sm resize-none"
-                placeholder="Tell me about your project..."
-              />
+              <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-accent border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/20 transition-all text-sm resize-none" placeholder="Tell me about your project..." />
             </div>
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity duration-200"
-            >
-              <Send size={16} />
-              Send Message
+            <button type="submit" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity duration-200">
+              <Send size={16} /> Send Message
             </button>
           </motion.form>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="md:col-span-2 flex flex-col gap-4"
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }} className="md:col-span-2 flex flex-col gap-4">
             <h3 className="text-sm font-medium text-foreground">Connect</h3>
-            {socials.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                className="flex items-center gap-3 p-3 rounded-xl hover:bg-accent transition-colors duration-200 text-muted-foreground hover:text-foreground"
-              >
-                <Icon size={20} />
-                <span className="text-sm font-medium">{label}</span>
-              </a>
-            ))}
+            {socials.map(({ label, href, type }) => {
+              const Icon = iconMap[type] || Send;
+              return (
+                <a key={label} href={href} className="flex items-center gap-3 p-3 rounded-xl hover:bg-accent transition-colors duration-200 text-muted-foreground hover:text-foreground">
+                  <Icon size={20} />
+                  <span className="text-sm font-medium">{label}</span>
+                </a>
+              );
+            })}
           </motion.div>
         </div>
       </div>
