@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
-import { ExternalLink, Github } from "lucide-react";
 import { projects, projectCategories, type ProjectCategory } from "@/data/portfolio";
 
 function countByCategory(cat: ProjectCategory) {
