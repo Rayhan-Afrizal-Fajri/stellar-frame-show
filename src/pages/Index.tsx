@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Download, Mail, ExternalLink, Github, ArrowRight, Briefcase } from "lucide-react";
+import { MapPin, Download, Mail, ArrowRight, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
