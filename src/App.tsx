@@ -7,6 +7,7 @@ import FloatingNav from "@/components/FloatingNav";
 import Index from "./pages/Index";
 import Certifications from "./pages/Certifications";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
