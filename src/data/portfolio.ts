@@ -23,10 +23,6 @@ export const socials = [
         href: "https://github.com/Rayhan-Afrizal-Fajri",
         type: "github" as const
     }, {
-        label: "Portfolio",
-        href: "https://portfolio-rayhan.netlify.app",
-        type: "website" as const
-    }, {
         label: "Email",
         href: "mailto:afrizalfajri23@gmail.com",
         type: "email" as const
