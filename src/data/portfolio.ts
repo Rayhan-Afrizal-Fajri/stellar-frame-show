@@ -20,7 +20,7 @@ export const socials = [
         type: "linkedin" as const
     }, {
         label: "GitHub",
-        href: "#",
+        href: "https://github.com/Rayhan-Afrizal-Fajri",
         type: "github" as const
     }, {
         label: "Portfolio",
@@ -36,7 +36,7 @@ export const socials = [
 // --- Experience ---
 export const experiences = [
     {
-        role: "Freelance Web / System Developer",
+        role: "Freelance Web / Full-Stack Developer",
         company: "Self-employed",
         time: "2025 – Present",
         location: "Indonesia",
@@ -94,6 +94,27 @@ export interface Project {
     conclusion: string;
 }
 
+import VictoryCore1 from '../assets/projects/victory-core/victory-dashboard.png';
+import VictoryCore2 from '../assets/projects/victory-core/victory-kanban.png';
+import VictoryCore3 from '../assets/projects/victory-core/victory-production.png';
+import VictoryCore4 from '../assets/projects/victory-core/victory-profit-loss.png';
+import VictoryCore5 from '../assets/projects/victory-core/victory-purchasing.png';
+import VictoryCore6 from '../assets/projects/victory-core/victory-sample.png';
+
+import Central1 from '../assets/projects/central-buah/central-dashboard.png';
+import Central2 from '../assets/projects/central-buah/central-do.png';
+import Central3 from '../assets/projects/central-buah/central-pos.png';
+import Central4 from '../assets/projects/central-buah/central-report.png';
+import Central5 from '../assets/projects/central-buah/central-schedule.png';
+import Central6 from '../assets/projects/central-buah/central-stock.png';
+import Central7 from '../assets/projects/central-buah/central-landing.png';
+
+import Jagatara from '../assets/projects/jagatara/jagatara-landing.png';
+
+import Akrom from '../assets/projects/akrom/akrom-landing.png';
+
+import Kampoeng from '../assets/projects/kampoeng/kampoeng-landing.png';
+
 export const projects: Project[] = [
     {
         slug: "victory-core",
@@ -111,7 +132,11 @@ export const projects: Project[] = [
         github: "#",
         category: "Web & System",
 
-        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+        image: VictoryCore1,
+
+        images: [
+            VictoryCore1, VictoryCore2, VictoryCore3, VictoryCore4, VictoryCore5, VictoryCore6
+        ],
 
         introduction:
             "Victory Core is an internal web-based management system developed for a textile manufacturing company. The application centralizes business operations by managing the entire production workflow, from customer order entry, costing, purchasing, sampling, production, delivery, invoicing, and profit & loss reporting within a single integrated platform.",
@@ -134,7 +159,7 @@ export const projects: Project[] = [
 
         conclusion:
             "Victory Core successfully digitized the company's manufacturing workflow by integrating multiple operational processes into a single system. The platform provides better production visibility, improves inter-department collaboration, reduces manual paperwork, and enables management to monitor project progress and business performance in real time."
-        }, {
+    }, {
       slug: "central-buah-inventory",
       title: "Central Buah Inventory System",
       description: "Inventory management system for tracking stock and transactions.",
@@ -142,9 +167,12 @@ export const projects: Project[] = [
           "Laravel", "React", "MySQL"
       ],
       demo: "#",
-      github: "#",
+      github: "https://github.com/Rayhan-Afrizal-Fajri/victory-core",
       category: "Web & System",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+      image: Central1,
+      images: [
+        Central1, Central2, Central3, Central4, Central5, Central6, Central7,
+      ],
       introduction: "An internal system designed to manage inventory and stock flow for a fruit sto" +
               "re.",
       purpose: "To ensure accurate stock tracking and support daily operational processes.",
@@ -161,7 +189,7 @@ export const projects: Project[] = [
       demo: "#",
       github: "#",
       category: "Web & System",
-      image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80",
+      image: Jagatara,
       introduction: "Jagatara Charcoal required a system to manage product data, company information, and digital content efficiently.",
       purpose: "To provide a centralized system for managing business content, enabling easier updates and better content organization.",
       features: [
@@ -181,7 +209,7 @@ export const projects: Project[] = [
       demo: "#",
       github: "#",
       category: "Web & System",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80",
+      image: Akrom,
       introduction: "A system to manage rental operations including booking, transactions, and cust" +
               "omer data.",
       purpose: "To digitize rental processes and improve data management.",
@@ -190,8 +218,8 @@ export const projects: Project[] = [
       ],
       conclusion: "Simplified rental operations and improved data organization."
     }, {
-      slug: "edisday-system",
-      title: "e-DisDay System",
+      slug: "sibaznas",
+      title: "SIBAZNAS",
       description: "Fund distribution management system with approval workflow and reporting.",
       tech: [
           "Laravel", "MySQL", "Blade"
@@ -219,7 +247,7 @@ export const projects: Project[] = [
       demo: "#",
       github: "#",
       category: "Web & System",
-      image: "https://images.unsplash.com/photo-1555992336-03a23c7b20ee?w=800&q=80",
+      image: Kampoeng,
       introduction: "A web-based system developed for managing tourism services and customer orders" +
               ".",
       purpose: "To support business operations by integrating booking and ordering processes i" +
@@ -228,26 +256,28 @@ export const projects: Project[] = [
           "Online booking system", "Order management", "Customer data management", "Admin dashboard"
       ],
       conclusion: "Helped improve service efficiency and customer management for the business."
-    }, {
-      slug: "siwali-jkb",
-      title: "SIWALI JKB (Academic Advisory System)",
-      description: "Academic advisory reporting system for lecturers to manage student progress and generate reports.",
-      tech: ["Laravel", "MySQL", "Blade"],
-      demo: "#",
-      github: "#",
-      category: "Web & System",
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80",
-      introduction: "SIWALI JKB is a final project developed to support academic advisors in managing student data and generating structured reports.",
-      purpose: "To reduce manual work and minimize errors in academic reporting processes for lecturers.",
-      features: [
-        "Student data management",
-        "GPA tracking and reporting",
-        "Automated report generation",
-        "Filtering based on semester and period",
-        "Dashboard for monitoring student performance",
-      ],
-      conclusion: "Successfully reduced reporting complexity and improved accuracy in academic advisory processes.",
-    }, {
+    }, 
+    // {
+    //   slug: "siwali-jkb",
+    //   title: "SIWALI JKB (Academic Advisory System)",
+    //   description: "Academic advisory reporting system for lecturers to manage student progress and generate reports.",
+    //   tech: ["Laravel", "MySQL", "Blade"],
+    //   demo: "#",
+    //   github: "#",
+    //   category: "Web & System",
+    //   image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80",
+    //   introduction: "SIWALI JKB is a final project developed to support academic advisors in managing student data and generating structured reports.",
+    //   purpose: "To reduce manual work and minimize errors in academic reporting processes for lecturers.",
+    //   features: [
+    //     "Student data management",
+    //     "GPA tracking and reporting",
+    //     "Automated report generation",
+    //     "Filtering based on semester and period",
+    //     "Dashboard for monitoring student performance",
+    //   ],
+    //   conclusion: "Successfully reduced reporting complexity and improved accuracy in academic advisory processes.",
+    // }, 
+    {
       slug: "intermedia-itc-2024",
       title: "Intermedia IT Competition 2024 - Poster Design",
       description: "1st place winner in national digital poster competition with the theme 'Lingkaran Judi Online'.",

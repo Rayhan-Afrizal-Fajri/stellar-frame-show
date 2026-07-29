@@ -15,7 +15,7 @@ const Footer = () => (
           .map(({ label, href, type }) => {
             const Icon = iconMap[type as keyof typeof iconMap];
             return (
-              <a key={label} href={href} aria-label={label} className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors duration-200">
+              <a target="_blank" key={label} href={href} aria-label={label} className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors duration-200">
                 <Icon size={18} />
               </a>
             );
