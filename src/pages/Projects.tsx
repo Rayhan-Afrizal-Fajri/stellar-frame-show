@@ -9,7 +9,7 @@ function countByCategory(cat: ProjectCategory) {
 }
 
 const Projects = () => {
-  const [active, setActive] = useState<ProjectCategory>("All");
+  const [active, setActive] = useState<ProjectCategory>("Web & System");
   const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
 
   return (
@@ -20,7 +20,7 @@ const Projects = () => {
           <p className="text-muted-foreground mb-8">A selection of things I've built and shipped.</p>
         </motion.div>
 
-        <div className="flex flex-wrap gap-2 mb-10">
+        {/* <div className="flex flex-wrap gap-2 mb-10">
           {projectCategories.map((cat) => (
             <button
               key={cat}
@@ -32,7 +32,7 @@ const Projects = () => {
               {cat} ({countByCategory(cat)})
             </button>
           ))}
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map((project, i) => (

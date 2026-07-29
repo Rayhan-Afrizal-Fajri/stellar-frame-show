@@ -50,7 +50,7 @@ export const experiences = [
     }, {
         role: "Web Developer Intern",
         company: "LAZISNU Cilacap",
-        time: "2024",
+        time: "Aug 2024 - Dec 2024",
         location: "Cilacap, Indonesia",
         image: "https://ui-avatars.com/api/?name=LZ&background=0a0a0a&color=fff&size=80"
     }
@@ -58,19 +58,19 @@ export const experiences = [
 
 // --- Tech Stack ---
 export const techStack = [
-    "Laravel",
-    "React",
-    "JavaScript",
-    "PHP",
-    "MySQL",
-    "Tailwind CSS",
     "HTML",
     "CSS",
+    "PHP",
+    "JavaScript",
+    "MySQL",
+    "Laravel",
+    "React",
+    "Tailwind CSS",
     "Git",
     "MVC Architecture",
-    "REST API",
     "ERD Design",
-    "System Design"
+    "System Design",
+    "REST API",
 ];
 
 // --- Project Categories ---
@@ -96,6 +96,45 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        slug: "victory-core",
+        title: "Victory Core",
+        description:
+            "A comprehensive ERP-like manufacturing execution system for managing the complete textile production lifecycle, from customer orders to profitability analysis.",
+
+        tech: [
+            "Laravel",
+            "React",
+            "MySQL"
+        ],
+
+        demo: "#",
+        github: "#",
+        category: "Web & System",
+
+        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+
+        introduction:
+            "Victory Core is an internal web-based management system developed for a textile manufacturing company. The application centralizes business operations by managing the entire production workflow, from customer order entry, costing, purchasing, sampling, production, delivery, invoicing, and profit & loss reporting within a single integrated platform.",
+
+        purpose:
+            "To digitize and streamline textile manufacturing operations, improve collaboration between departments, provide real-time production visibility, and reduce manual administrative processes.",
+
+        features: [
+            "Digital Purchase Order & Order Entry Management",
+            "Real-time Production Workflow Tracking",
+            "Kanban Board & Task Scheduling",
+            "Costing & Quotation Management",
+            "Purchasing & Material Requirement Planning",
+            "Sample Production Workflow",
+            "Production Monitoring Dashboard",
+            "Invoice & Payment Management",
+            "Profit & Loss (P&L) Reporting",
+            "Role-based Access Control & Activity Tracking"
+        ],
+
+        conclusion:
+            "Victory Core successfully digitized the company's manufacturing workflow by integrating multiple operational processes into a single system. The platform provides better production visibility, improves inter-department collaboration, reduces manual paperwork, and enables management to monitor project progress and business performance in real time."
+        }, {
       slug: "central-buah-inventory",
       title: "Central Buah Inventory System",
       description: "Inventory management system for tracking stock and transactions.",
