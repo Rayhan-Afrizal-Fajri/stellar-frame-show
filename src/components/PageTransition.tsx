@@ -3,11 +3,11 @@ import { ReactNode } from "react";
 
 const PageTransition = ({ children }: { children: ReactNode }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.35, ease: "easeOut" }}
-    className="min-h-screen pb-28"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.15, ease: "easeOut" }}
+    className="min-h-screen pb-28 transform-gpu"
   >
     {children}
   </motion.div>

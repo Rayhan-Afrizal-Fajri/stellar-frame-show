@@ -1,8 +1,11 @@
-// iOS-inspired Web Audio API procedural sound synthesizer (no external audio files required)
+// High-Performance iOS-inspired Web Audio API sound engine
+// Ultra-lightweight, 0 latency, rate-limited to eliminate stuttering
 
 class SoundEngine {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
+  private lastPlayTime: number = 0;
+  private minIntervalMs: number = 90; // Rate limit to prevent sound spam and audio crackle
 
   constructor() {
     if (typeof window !== "undefined") {
@@ -10,9 +13,12 @@ class SoundEngine {
     }
   }
 
-  private initContext() {
-    if (!this.ctx && typeof window !== "undefined") {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+  private initContext(): boolean {
+    if (typeof window === "undefined") return false;
+    if (!this.ctx) {
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (AudioCtx) {
         this.ctx = new AudioCtx();
       }
@@ -20,6 +26,7 @@ class SoundEngine {
     if (this.ctx && this.ctx.state === "suspended") {
       this.ctx.resume().catch(() => {});
     }
+    return !!this.ctx;
   }
 
   public get muted(): boolean {
@@ -37,57 +44,64 @@ class SoundEngine {
     return this.isMuted;
   }
 
+  private shouldThrottle(): boolean {
+    const now = performance.now();
+    if (now - this.lastPlayTime < this.minIntervalMs) {
+      return true;
+    }
+    this.lastPlayTime = now;
+    return false;
+  }
+
   // Soft tactile iOS tap
   public playTap() {
-    if (this.isMuted) return;
+    if (this.isMuted || this.shouldThrottle()) return;
     try {
-      this.initContext();
-      if (!this.ctx) return;
+      if (!this.initContext() || !this.ctx) return;
+      const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
 
       osc.type = "sine";
-      const now = this.ctx.currentTime;
-      osc.frequency.setValueAtTime(800, now);
-      osc.frequency.exponentialRampToValueAtTime(350, now + 0.04);
+      osc.frequency.setValueAtTime(600, now);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.035);
 
-      gain.gain.setValueAtTime(0.08, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.04);
+      osc.stop(now + 0.035);
     } catch {
-      // Ignore audio failure
+      // Fallback gracefully
     }
   }
 
   // Soft liquid bubble pop
   public playPop() {
-    if (this.isMuted) return;
+    if (this.isMuted || this.shouldThrottle()) return;
     try {
-      this.initContext();
-      if (!this.ctx) return;
+      if (!this.initContext() || !this.ctx) return;
+      const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
 
       osc.type = "sine";
-      const now = this.ctx.currentTime;
-      osc.frequency.setValueAtTime(400, now);
-      osc.frequency.exponentialRampToValueAtTime(1100, now + 0.08);
+      osc.frequency.setValueAtTime(450, now);
+      osc.frequency.exponentialRampToValueAtTime(950, now + 0.05);
 
-      gain.gain.setValueAtTime(0.07, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.08);
+      osc.stop(now + 0.05);
     } catch {
-      // Ignore
+      // Fallback gracefully
     }
   }
 
@@ -95,32 +109,30 @@ class SoundEngine {
   public playSwitch(toState: boolean) {
     if (this.isMuted) return;
     try {
-      this.initContext();
-      if (!this.ctx) return;
+      if (!this.initContext() || !this.ctx) return;
+      const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
 
-      osc.type = "triangle";
-      const now = this.ctx.currentTime;
-      const startFreq = toState ? 450 : 650;
-      const endFreq = toState ? 880 : 350;
+      osc.type = "sine";
+      const startFreq = toState ? 500 : 700;
+      const endFreq = toState ? 850 : 400;
 
       osc.frequency.setValueAtTime(startFreq, now);
-      osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.06);
+      osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.045);
 
-      gain.gain.setValueAtTime(0.06, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.045);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.06);
+      osc.stop(now + 0.045);
     } catch {
-      // Ignore
+      // Fallback gracefully
     }
   }
 }
 
 export const sound = new SoundEngine();
-

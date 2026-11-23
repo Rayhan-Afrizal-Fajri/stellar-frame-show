@@ -431,7 +431,7 @@ export const Index: React.FC = () => {
                       key={skill.name}
                       whileHover={{ scale: 1.05, y: -1 }}
                       whileTap={{ scale: 0.95 }}
-                      onMouseEnter={() => sound.playTap()}
+                      onClick={() => sound.playTap()}
                       className={`text-xs font-mono px-3 py-1.5 rounded-2xl cursor-default transition-all shadow-sm ${
                         skill.hot
                           ? "ios-glass bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/25"
