@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AnimatePresence } from "framer-motion";
 import FloatingNav from "@/components/FloatingNav";
+import { DynamicIsland } from "@/components/DynamicIsland";
+import { LiquidBackground } from "@/components/LiquidBackground";
 import Index from "./pages/Index";
 import Certifications from "./pages/Certifications";
 import Projects from "./pages/Projects";
@@ -32,8 +34,16 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Sonner />
+      <Sonner
+        position="top-right"
+        toastOptions={{
+          className:
+            "ios-glass rounded-2xl border-white/30 dark:border-white/10 shadow-lg text-foreground",
+        }}
+      />
       <BrowserRouter>
+        <LiquidBackground />
+        <DynamicIsland />
         <AnimatedRoutes />
         <FloatingNav />
       </BrowserRouter>

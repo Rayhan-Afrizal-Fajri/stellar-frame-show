@@ -7,15 +7,23 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1280px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "SF Pro Display",
+          "SF Pro Text",
+          "Inter",
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: ["JetBrains Mono", "SF Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,21 +59,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
       },
       borderRadius: {
+        "3xl": "1.75rem",
+        "4xl": "2.25rem",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        "ios-glass": "0 8px 32px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.4)",
+        "ios-glass-dark": "0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)",
+        "ios-dock": "0 20px 50px -10px rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.3)",
+        "ios-button": "0 4px 14px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.25)",
       },
       keyframes: {
         "accordion-down": {
@@ -85,16 +91,43 @@ export default {
           "100%": { opacity: "1" },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-12px) rotate(2deg)" },
+        },
+        "liquid-morph": {
+          "0%, 100%": { borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" },
+          "50%": { borderRadius: "30% 60% 70% 40% / 50% 60% 30% 60%" },
+        },
+        "liquid-drift-1": {
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.95)" },
+        },
+        "liquid-drift-2": {
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(-40px, 40px) scale(1.05)" },
+          "66%": { transform: "translate(25px, -30px) scale(0.9)" },
+        },
+        "shimmer-sweep": {
+          "0%": { transform: "translateX(-150%)" },
+          "100%": { transform: "translateX(150%)" },
+        },
+        pulseGlow: {
+          "0%, 100%": { opacity: "0.6", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.08)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-up": "fade-up 0.6s ease-out forwards",
+        "fade-up": "fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "fade-in": "fade-in 0.4s ease-out forwards",
-        float: "float 6s ease-in-out infinite",
+        float: "float 8s ease-in-out infinite",
+        "liquid-morph": "liquid-morph 12s ease-in-out infinite",
+        "liquid-drift-1": "liquid-drift-1 18s ease-in-out infinite",
+        "liquid-drift-2": "liquid-drift-2 22s ease-in-out infinite",
+        "shimmer-sweep": "shimmer-sweep 2.5s infinite",
+        "pulse-glow": "pulseGlow 3s ease-in-out infinite",
       },
     },
   },
