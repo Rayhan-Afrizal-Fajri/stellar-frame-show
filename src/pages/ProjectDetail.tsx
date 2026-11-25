@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -37,6 +37,16 @@ const DetailImageGallery = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const nextSlide = useCallback(() => {
+    sound.playTap();
+    setCurrentIndex((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
+  }, [sliderImages.length]);
+
+  const prevSlide = useCallback(() => {
+    sound.playTap();
+    setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
+  }, [sliderImages.length]);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -48,7 +58,7 @@ const DetailImageGallery = ({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isModalOpen, sliderImages.length]);
+  }, [isModalOpen, nextSlide, prevSlide]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -61,22 +71,12 @@ const DetailImageGallery = ({
     };
   }, [isModalOpen]);
 
-  const nextSlide = () => {
-    sound.playTap();
-    setCurrentIndex((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    sound.playTap();
-    setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
-  };
-
   if (sliderImages.length === 0) return null;
 
   return (
     <div className="mb-10 sm:mb-12">
       {/* Main Preview Frame */}
-      <div className="relative rounded-3xl ios-glass overflow-hidden border border-white/50 dark:border-white/10 group shadow-lg bg-black/5 dark:bg-black/30">
+      <div className="theme-card theme-media-frame relative overflow-hidden group bg-black/5 dark:bg-black/30">
         <div
           className="relative w-full aspect-video sm:aspect-[16/10] flex items-center justify-center cursor-zoom-in"
           onClick={() => {
@@ -87,18 +87,24 @@ const DetailImageGallery = ({
           <img
             src={sliderImages[currentIndex]}
             alt={`${title} - view ${currentIndex + 1}`}
-            className="w-full h-full object-contain p-2 sm:p-4 transition-transform duration-500 hover:scale-[1.01]"
+            className="theme-media-img w-full h-full object-contain p-2 sm:p-4 transition-transform duration-500 hover:scale-[1.01]"
           />
 
           {/* Zoom hint overlay */}
-          <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full ios-glass border border-white/30 text-xs font-medium text-foreground opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 pointer-events-none shadow-md">
+          <div
+            className="absolute top-4 right-4 px-3 py-1.5 theme-surface text-xs font-medium text-foreground opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 pointer-events-none shadow-md"
+            style={{ borderRadius: "var(--theme-radius-pill)" }}
+          >
             <Maximize2 size={13} />
             <span>Click to expand</span>
           </div>
 
           {/* Image index counter */}
           {sliderImages.length > 1 && (
-            <div className="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-mono text-xs shadow-md">
+            <div
+              className="absolute bottom-4 right-4 px-3 py-1 bg-black/65 backdrop-blur-md text-white font-mono text-xs shadow-md"
+              style={{ borderRadius: "var(--theme-radius-pill)" }}
+            >
               {currentIndex + 1} / {sliderImages.length}
             </div>
           )}
@@ -113,7 +119,7 @@ const DetailImageGallery = ({
                 e.stopPropagation();
                 prevSlide();
               }}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full ios-glass flex items-center justify-center text-foreground hover:scale-110 active:scale-95 transition-all shadow-md opacity-0 group-hover:opacity-100 z-10"
+              className="theme-btn-secondary absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-foreground hover:scale-110 transition-all shadow-md opacity-0 group-hover:opacity-100 z-10"
               aria-label="Previous image"
             >
               <ChevronLeft size={20} />
@@ -124,7 +130,7 @@ const DetailImageGallery = ({
                 e.stopPropagation();
                 nextSlide();
               }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full ios-glass flex items-center justify-center text-foreground hover:scale-110 active:scale-95 transition-all shadow-md opacity-0 group-hover:opacity-100 z-10"
+              className="theme-btn-secondary absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-foreground hover:scale-110 transition-all shadow-md opacity-0 group-hover:opacity-100 z-10"
               aria-label="Next image"
             >
               <ChevronRight size={20} />
@@ -144,16 +150,17 @@ const DetailImageGallery = ({
                 sound.playTap();
                 setCurrentIndex(idx);
               }}
-              className={`relative flex-shrink-0 w-16 h-12 sm:w-20 sm:h-14 rounded-xl overflow-hidden border-2 transition-all ${
+              style={{ borderRadius: "var(--theme-radius-md)" }}
+              className={`theme-media-frame relative flex-shrink-0 w-16 h-12 sm:w-20 sm:h-14 overflow-hidden border-2 transition-all ${
                 idx === currentIndex
-                  ? "border-blue-500 scale-105 shadow-md ring-2 ring-blue-500/30"
+                  ? "border-[var(--theme-accent)] scale-105 shadow-md ring-2 ring-[var(--theme-accent-soft)]"
                   : "border-border/60 opacity-60 hover:opacity-100"
               }`}
             >
               <img
                 src={thumb}
                 alt={`Thumbnail ${idx + 1}`}
-                className="w-full h-full object-cover"
+                className="theme-media-img w-full h-full object-cover"
               />
             </button>
           ))}
@@ -262,12 +269,12 @@ export const ProjectDetail: React.FC = () => {
     return (
       <PageTransition>
         <div className="container max-w-3xl mx-auto px-6 pt-32 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
+          <h1 className="theme-hero-title text-3xl font-bold text-foreground mb-4">
             System Project Not Found
           </h1>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium"
+            className="theme-btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
           >
             <ArrowLeft size={16} /> Back to Projects
           </Link>
@@ -285,7 +292,7 @@ export const ProjectDetail: React.FC = () => {
           <Link
             to="/projects"
             onClick={() => sound.playTap()}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full ios-glass border border-white/50 dark:border-white/10 text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground transition-all shadow-sm"
+            className="theme-btn-secondary inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft size={15} />
             <span>All Projects</span>
@@ -294,7 +301,7 @@ export const ProjectDetail: React.FC = () => {
           <button
             type="button"
             onClick={handleShare}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full ios-glass border border-white/50 dark:border-white/10 text-xs text-muted-foreground hover:text-foreground transition-all shadow-sm"
+            className="theme-btn-secondary inline-flex items-center gap-1.5 px-3.5 py-2 text-xs text-muted-foreground hover:text-foreground"
           >
             <Share2 size={14} />
             <span>Share</span>
@@ -309,17 +316,17 @@ export const ProjectDetail: React.FC = () => {
           className="mb-8"
         >
           <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-mono font-medium">
+            <span className="theme-badge-accent px-3 py-1 text-xs font-mono font-medium">
               {project.category}
             </span>
             {project.badge && (
-              <span className="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-mono font-medium">
+              <span className="theme-chip px-3 py-1 text-xs font-mono font-medium text-foreground">
                 {project.badge}
               </span>
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
+          <h1 className="theme-hero-title text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
             {project.title}
           </h1>
 
@@ -335,7 +342,7 @@ export const ProjectDetail: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => sound.playPop()}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs sm:text-sm font-medium shadow-[0_4px_16px_rgba(59,130,246,0.35)] hover:scale-105 active:scale-95 transition-all"
+                className="theme-btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm"
               >
                 <ExternalLink size={15} />
                 <span>Visit Live System</span>
@@ -348,7 +355,7 @@ export const ProjectDetail: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => sound.playPop()}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full ios-glass border border-white/50 dark:border-white/10 text-foreground text-xs sm:text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-sm"
+                className="theme-btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-medium"
               >
                 <Github size={15} />
                 <span>Source Code</span>
@@ -372,9 +379,9 @@ export const ProjectDetail: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="ios-glass-card p-6 rounded-3xl"
+            className="theme-card p-6"
           >
-            <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 mb-3">
+            <div className="flex items-center gap-2 theme-accent-text mb-3">
               <Workflow size={18} />
               <h2 className="text-base font-bold text-foreground">
                 Overview & Problem Context
@@ -391,9 +398,9 @@ export const ProjectDetail: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="ios-glass-card p-6 rounded-3xl"
+            className="theme-card p-6"
           >
-            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 mb-3">
+            <div className="flex items-center gap-2 theme-accent-2-text mb-3">
               <Target size={18} />
               <h2 className="text-base font-bold text-foreground">
                 Strategic Purpose & Objectives
@@ -412,9 +419,9 @@ export const ProjectDetail: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="ios-glass-card p-6 sm:p-8 rounded-3xl mb-10"
+            className="theme-card p-6 sm:p-8 mb-10"
           >
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-4">
+            <div className="flex items-center gap-2 theme-accent-text mb-4">
               <Sparkles size={18} />
               <h2 className="text-base sm:text-lg font-bold text-foreground">
                 Engineered Modules & Architecture Features
@@ -425,11 +432,11 @@ export const ProjectDetail: React.FC = () => {
               {project.features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-2.5 p-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-border/30 text-xs sm:text-sm text-muted-foreground"
+                  className="theme-chip flex items-start gap-2.5 p-3 text-xs sm:text-sm text-muted-foreground"
                 >
                   <CheckCircle2
                     size={16}
-                    className="text-emerald-500 mt-0.5 flex-shrink-0"
+                    className="theme-accent-text mt-0.5 flex-shrink-0"
                   />
                   <span className="leading-snug">{feature}</span>
                 </div>
@@ -444,9 +451,9 @@ export const ProjectDetail: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="ios-glass-card p-6 rounded-3xl mb-10"
+          className="theme-card p-6 mb-10"
         >
-          <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 mb-3">
+          <div className="flex items-center gap-2 theme-accent-2-text mb-3">
             <Layers size={18} />
             <h2 className="text-base font-bold text-foreground">
               Technology Stack Used
@@ -456,7 +463,7 @@ export const ProjectDetail: React.FC = () => {
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="text-xs font-mono px-3 py-1.5 rounded-2xl ios-glass bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/20"
+                className="theme-chip-hot text-xs font-mono px-3 py-1.5"
               >
                 {t}
               </span>
@@ -470,7 +477,7 @@ export const ProjectDetail: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="ios-glass-card p-6 sm:p-8 rounded-3xl mb-14"
+          className="theme-card p-6 sm:p-8 mb-14"
         >
           <h2 className="text-base sm:text-lg font-bold text-foreground mb-3">
             Outcomes & Business Impact
@@ -485,18 +492,18 @@ export const ProjectDetail: React.FC = () => {
           <Link
             to={`/projects/${prevProject.slug}`}
             onClick={() => sound.playPop()}
-            className="ios-glass-card p-4 rounded-2xl flex items-center justify-between group hover:border-blue-500/30 transition-all"
+            className="theme-card-hover p-4 flex items-center justify-between group"
           >
             <div className="flex items-center gap-3">
               <ChevronLeft
                 size={18}
-                className="text-muted-foreground group-hover:-translate-x-1 transition-transform"
+                className="text-muted-foreground group-hover:text-[var(--theme-accent)] group-hover:-translate-x-1 transition-all"
               />
               <div>
                 <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground block">
                   Previous Project
                 </span>
-                <span className="text-xs sm:text-sm font-semibold text-foreground truncate max-w-[180px] block">
+                <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-[var(--theme-accent)] transition-colors truncate max-w-[180px] block">
                   {prevProject.title}
                 </span>
               </div>
@@ -506,20 +513,20 @@ export const ProjectDetail: React.FC = () => {
           <Link
             to={`/projects/${nextProject.slug}`}
             onClick={() => sound.playPop()}
-            className="ios-glass-card p-4 rounded-2xl flex items-center justify-between group hover:border-blue-500/30 transition-all text-right"
+            className="theme-card-hover p-4 flex items-center justify-between group text-right"
           >
             <div className="ml-auto flex items-center gap-3">
               <div>
                 <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground block">
                   Next Project
                 </span>
-                <span className="text-xs sm:text-sm font-semibold text-foreground truncate max-w-[180px] block">
+                <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-[var(--theme-accent)] transition-colors truncate max-w-[180px] block">
                   {nextProject.title}
                 </span>
               </div>
               <ChevronRight
                 size={18}
-                className="text-muted-foreground group-hover:translate-x-1 transition-transform"
+                className="text-muted-foreground group-hover:text-[var(--theme-accent)] group-hover:translate-x-1 transition-all"
               />
             </div>
           </Link>

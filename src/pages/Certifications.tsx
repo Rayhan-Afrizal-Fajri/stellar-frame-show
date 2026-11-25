@@ -37,11 +37,11 @@ export const Certifications: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="mb-10 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-medium mb-3">
+          <div className="theme-badge-accent inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium mb-3">
             <Award size={13} />
             <span>Verified Credentials</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+          <h1 className="theme-hero-title text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
             Certifications & Training
           </h1>
           <p className="text-muted-foreground mt-2 max-w-xl text-sm sm:text-base leading-relaxed">
@@ -57,26 +57,28 @@ export const Certifications: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="ios-glass-card p-6 sm:p-7 rounded-[30px] flex flex-col justify-between relative overflow-hidden group hover:border-blue-500/30 transition-all"
+              className="theme-card-hover p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group"
             >
-              {/* Top ambient colored light gradient */}
+              {/* Top ambient theme-adaptive gradient */}
               <div
-                className={`absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br ${cert.color} blur-2xl pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity`}
+                className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-2xl pointer-events-none opacity-45 group-hover:opacity-75 transition-opacity"
+                style={{ background: "var(--theme-accent-soft)" }}
+                aria-hidden="true"
               />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-black/5 dark:bg-white/10 flex items-center justify-center border border-border/50 shadow-sm flex-shrink-0">
-                    <Award size={22} className="text-amber-500" />
+                  <div className="theme-chip w-12 h-12 flex items-center justify-center shadow-sm flex-shrink-0">
+                    <Award size={22} className="theme-accent-text" />
                   </div>
 
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-mono font-medium">
+                  <span className="theme-status-pill inline-flex items-center gap-1 px-3 py-1 text-[11px] font-mono font-medium">
                     <ShieldCheck size={12} />
                     {cert.badge}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-lg sm:text-xl text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                <h3 className="font-bold text-lg sm:text-xl text-foreground group-hover:text-[var(--theme-accent)] transition-colors leading-snug">
                   {cert.title}
                 </h3>
 
@@ -94,7 +96,7 @@ export const Certifications: React.FC = () => {
                     {cert.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 border border-border/40 text-muted-foreground"
+                        className="theme-chip text-[11px] font-mono px-2.5 py-1 text-muted-foreground"
                       >
                         {skill}
                       </span>
@@ -112,11 +114,11 @@ export const Certifications: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleCopyId(cert.credentialId)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full ios-glass border border-white/40 dark:border-white/10 text-muted-foreground hover:text-foreground text-[11px] font-medium transition-all shadow-sm"
+                  className="theme-btn-secondary inline-flex items-center gap-1.5 px-3 py-1.5 text-muted-foreground hover:text-foreground text-[11px] font-medium"
                 >
                   {copiedId === cert.credentialId ? (
                     <>
-                      <Check size={12} className="text-emerald-500" />
+                      <Check size={12} style={{ color: "var(--theme-status)" }} />
                       <span>Copied!</span>
                     </>
                   ) : (
@@ -137,10 +139,10 @@ export const Certifications: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="ios-glass-card p-6 sm:p-8 rounded-[30px] mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          className="theme-card p-6 sm:p-8 mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0">
+            <div className="theme-chip-hot w-12 h-12 flex items-center justify-center flex-shrink-0">
               <BookOpen size={24} />
             </div>
             <div>
@@ -153,7 +155,7 @@ export const Certifications: React.FC = () => {
             </div>
           </div>
 
-          <span className="px-3.5 py-1.5 rounded-full bg-black/5 dark:bg-white/10 text-xs font-mono text-muted-foreground whitespace-nowrap self-start sm:self-center">
+          <span className="theme-chip px-3.5 py-1.5 text-xs font-mono text-muted-foreground whitespace-nowrap self-start sm:self-center">
             Completed Degree
           </span>
         </motion.div>

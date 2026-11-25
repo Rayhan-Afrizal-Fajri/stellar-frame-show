@@ -1,0 +1,1068 @@
+/* ============================================================================
+   MULTI-THEME DESIGN SYSTEM — 8 Handcrafted Signature Visual Universes
+   Each theme transforms color palette, typography, border radius, shadows,
+   surface materiality, media treatment, selection, scrollbars, and motion.
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   1. LIQUID OBSIDIAN (Default Dark iOS Liquid Glass)
+   ---------------------------------------------------------------------------- */
+:root,
+[data-theme="liquid-dark"] {
+  --background: 225 25% 6%;
+  --foreground: 210 40% 96%;
+  --card: 225 25% 9%;
+  --card-foreground: 210 40% 96%;
+  --popover: 225 25% 9%;
+  --popover-foreground: 210 40% 96%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 225 20% 14%;
+  --secondary-foreground: 210 40% 96%;
+  --muted: 225 18% 14%;
+  --muted-foreground: 217 15% 64%;
+  --accent: 225 20% 16%;
+  --accent-foreground: 210 40% 96%;
+  --destructive: 0 62% 45%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 225 20% 18%;
+  --input: 225 20% 18%;
+  --ring: 217 91% 60%;
+  --radius: 1.25rem;
+
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", monospace;
+
+  --ios-glass-bg: rgba(18, 22, 34, 0.72);
+  --ios-glass-strong: rgba(12, 16, 26, 0.84);
+  --ios-glass-border: rgba(255, 255, 255, 0.12);
+  --ios-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.42);
+  --ios-shadow-hover: 0 14px 40px -4px rgba(0, 0, 0, 0.62);
+  --surface-blur: 14px;
+  --surface-border-width: 1px;
+  --surface-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+
+  --theme-accent: #3b82f6;
+  --theme-accent-2: #8b5cf6;
+  --theme-accent-fg: #ffffff;
+  --theme-accent-soft: rgba(59, 130, 246, 0.14);
+  --theme-accent-border: rgba(99, 102, 241, 0.35);
+  --theme-accent-glow: 0 6px 24px rgba(59, 130, 246, 0.38);
+  --theme-btn-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  --theme-text-gradient: linear-gradient(90deg, #60a5fa 0%, #a5b4fc 50%, #c084fc 100%);
+  --theme-status: #10b981;
+  --theme-status-soft: rgba(16, 185, 129, 0.14);
+  --theme-status-text: #34d399;
+  --theme-chip-bg: rgba(255, 255, 255, 0.08);
+  --theme-chip-hover: rgba(255, 255, 255, 0.14);
+
+  --theme-radius-card: 1.75rem;
+  --theme-radius-lg: 2rem;
+  --theme-radius-md: 1rem;
+  --theme-radius-pill: 9999px;
+  --theme-radius-dock: 1.625rem;
+  --theme-radius-island: 1.75rem;
+  --theme-radius-avatar: 2.25rem;
+  --theme-selection-bg: rgba(59, 130, 246, 0.25);
+  --theme-selection-fg: #93c5fd;
+  --theme-scrollbar: rgba(140, 150, 170, 0.28);
+  --theme-scrollbar-hover: rgba(140, 150, 170, 0.48);
+}
+
+/* ----------------------------------------------------------------------------
+   2. LIQUID PORCELAIN (Light iOS Liquid Glass)
+   ---------------------------------------------------------------------------- */
+[data-theme="liquid-light"] {
+  --background: 220 26% 97%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 214 32% 93%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 215 25% 92%;
+  --muted-foreground: 215 16% 42%;
+  --accent: 214 32% 94%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84% 58%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214 25% 86%;
+  --input: 214 25% 86%;
+  --ring: 221 83% 53%;
+  --radius: 1.25rem;
+
+  --ios-glass-bg: rgba(255, 255, 255, 0.78);
+  --ios-glass-strong: rgba(255, 255, 255, 0.9);
+  --ios-glass-border: rgba(255, 255, 255, 0.88);
+  --ios-shadow: 0 6px 24px -4px rgba(31, 38, 135, 0.08);
+  --ios-shadow-hover: 0 12px 34px -4px rgba(31, 38, 135, 0.15);
+  --surface-blur: 14px;
+  --surface-border-width: 1px;
+  --surface-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+
+  --theme-accent: #2563eb;
+  --theme-accent-2: #6366f1;
+  --theme-accent-fg: #ffffff;
+  --theme-accent-soft: rgba(37, 99, 235, 0.1);
+  --theme-accent-border: rgba(37, 99, 235, 0.28);
+  --theme-accent-glow: 0 6px 22px rgba(37, 99, 235, 0.3);
+  --theme-btn-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  --theme-text-gradient: linear-gradient(90deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+  --theme-status: #10b981;
+  --theme-status-soft: rgba(16, 185, 129, 0.12);
+  --theme-status-text: #059669;
+  --theme-chip-bg: rgba(15, 23, 42, 0.05);
+  --theme-chip-hover: rgba(15, 23, 42, 0.09);
+
+  --theme-selection-bg: rgba(37, 99, 235, 0.18);
+  --theme-selection-fg: #1d4ed8;
+  --theme-scrollbar: rgba(100, 116, 139, 0.28);
+  --theme-scrollbar-hover: rgba(100, 116, 139, 0.5);
+}
+
+/* ----------------------------------------------------------------------------
+   3. PIXEL ARCADE 8-BIT (Retro Cartridge Console)
+   ---------------------------------------------------------------------------- */
+[data-theme="pixel"] {
+  --background: 247 41% 11%;
+  --foreground: 46 88% 95%;
+  --card: 246 39% 17%;
+  --card-foreground: 46 88% 95%;
+  --popover: 246 39% 15%;
+  --popover-foreground: 46 88% 95%;
+  --primary: 47 100% 63%;
+  --primary-foreground: 247 45% 10%;
+  --secondary: 246 34% 24%;
+  --secondary-foreground: 46 88% 95%;
+  --muted: 246 30% 22%;
+  --muted-foreground: 245 36% 74%;
+  --accent: 184 100% 61%;
+  --accent-foreground: 247 45% 10%;
+  --destructive: 339 100% 62%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 246 34% 44%;
+  --input: 246 34% 44%;
+  --ring: 47 100% 63%;
+  --radius: 0px;
+
+  --font-display: "Press Start 2P", monospace;
+  --font-body: "Silkscreen", "JetBrains Mono", monospace;
+  --font-mono: "Silkscreen", "JetBrains Mono", monospace;
+
+  --ios-glass-bg: #1e1a3d;
+  --ios-glass-strong: #171433;
+  --ios-glass-border: #6b62bd;
+  --ios-shadow: 5px 5px 0px #080614;
+  --ios-shadow-hover: 7px 7px 0px #080614;
+  --surface-blur: 0px;
+  --surface-border-width: 3px;
+  --surface-inset: inset -3px -3px 0px rgba(8, 6, 20, 0.55), inset 3px 3px 0px rgba(255, 255, 255, 0.14);
+
+  --theme-accent: #ffd541;
+  --theme-accent-2: #38f5ff;
+  --theme-accent-fg: #121026;
+  --theme-accent-soft: rgba(255, 213, 65, 0.16);
+  --theme-accent-border: #ffd541;
+  --theme-accent-glow: 4px 4px 0px #080614;
+  --theme-btn-gradient: linear-gradient(180deg, #ffe066 0%, #f5b700 100%);
+  --theme-text-gradient: linear-gradient(90deg, #ffd541 0%, #38f5ff 55%, #ff5e99 100%);
+  --theme-status: #4ade80;
+  --theme-status-soft: rgba(74, 222, 128, 0.16);
+  --theme-status-text: #4ade80;
+  --theme-chip-bg: #292452;
+  --theme-chip-hover: #352f69;
+
+  --theme-radius-card: 0px;
+  --theme-radius-lg: 0px;
+  --theme-radius-md: 0px;
+  --theme-radius-pill: 0px;
+  --theme-radius-dock: 0px;
+  --theme-radius-island: 0px;
+  --theme-radius-avatar: 0px;
+  --theme-selection-bg: #ffd541;
+  --theme-selection-fg: #121026;
+  --theme-scrollbar: #6b62bd;
+  --theme-scrollbar-hover: #ffd541;
+}
+
+/* ----------------------------------------------------------------------------
+   4. CYBERPUNK 2077 (Night City Neon HUD)
+   ---------------------------------------------------------------------------- */
+[data-theme="cyberpunk"] {
+  --background: 240 38% 4%;
+  --foreground: 194 100% 95%;
+  --card: 235 42% 9%;
+  --card-foreground: 194 100% 95%;
+  --popover: 235 42% 8%;
+  --popover-foreground: 194 100% 95%;
+  --primary: 56 97% 52%;
+  --primary-foreground: 240 42% 5%;
+  --secondary: 234 36% 14%;
+  --secondary-foreground: 194 100% 95%;
+  --muted: 234 32% 13%;
+  --muted-foreground: 198 30% 66%;
+  --accent: 184 100% 50%;
+  --accent-foreground: 240 42% 5%;
+  --destructive: 334 100% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 184 100% 50%;
+  --input: 184 65% 32%;
+  --ring: 56 97% 52%;
+  --radius: 2px;
+
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Rajdhani", "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ios-glass-bg: rgba(11, 14, 28, 0.84);
+  --ios-glass-strong: rgba(8, 10, 22, 0.94);
+  --ios-glass-border: rgba(0, 240, 255, 0.34);
+  --ios-shadow: 0 0 24px rgba(0, 240, 255, 0.12), 0 10px 28px rgba(0, 0, 0, 0.65);
+  --ios-shadow-hover: 0 0 32px rgba(252, 238, 10, 0.24), 0 0 18px rgba(0, 240, 255, 0.24);
+  --surface-blur: 10px;
+  --surface-border-width: 1px;
+  --surface-inset: inset 0 1px 0 0 rgba(0, 240, 255, 0.32);
+
+  --theme-accent: #fcee0a;
+  --theme-accent-2: #00f0ff;
+  --theme-accent-fg: #05050a;
+  --theme-accent-soft: rgba(0, 240, 255, 0.12);
+  --theme-accent-border: rgba(252, 238, 10, 0.55);
+  --theme-accent-glow: 0 0 24px rgba(252, 238, 10, 0.45);
+  --theme-btn-gradient: linear-gradient(135deg, #fcee0a 0%, #ffea00 60%, #ffb703 100%);
+  --theme-text-gradient: linear-gradient(90deg, #fcee0a 0%, #00f0ff 55%, #ff006e 100%);
+  --theme-status: #00f0ff;
+  --theme-status-soft: rgba(0, 240, 255, 0.14);
+  --theme-status-text: #00f0ff;
+  --theme-chip-bg: rgba(0, 240, 255, 0.08);
+  --theme-chip-hover: rgba(0, 240, 255, 0.16);
+
+  --theme-radius-card: 4px;
+  --theme-radius-lg: 4px;
+  --theme-radius-md: 3px;
+  --theme-radius-pill: 3px;
+  --theme-radius-dock: 4px;
+  --theme-radius-island: 4px;
+  --theme-radius-avatar: 6px;
+  --theme-selection-bg: rgba(252, 238, 10, 0.9);
+  --theme-selection-fg: #05050a;
+  --theme-scrollbar: rgba(0, 240, 255, 0.4);
+  --theme-scrollbar-hover: #fcee0a;
+}
+
+/* ----------------------------------------------------------------------------
+   5. MONOCHROME NOIR (Swiss Editorial Gallery)
+   ---------------------------------------------------------------------------- */
+[data-theme="monochrome"] {
+  --background: 0 0% 3.5%;
+  --foreground: 0 0% 97%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 97%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 97%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 5%;
+  --secondary: 0 0% 13%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 13%;
+  --muted-foreground: 0 0% 66%;
+  --accent: 0 0% 16%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 0% 78%;
+  --destructive-foreground: 0 0% 6%;
+  --border: 0 0% 20%;
+  --input: 0 0% 22%;
+  --ring: 0 0% 95%;
+  --radius: 3px;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ios-glass-bg: rgba(16, 16, 16, 0.88);
+  --ios-glass-strong: rgba(10, 10, 10, 0.95);
+  --ios-glass-border: rgba(255, 255, 255, 0.16);
+  --ios-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --ios-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.8);
+  --surface-blur: 8px;
+  --surface-border-width: 1px;
+  --surface-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+
+  --theme-accent: #ffffff;
+  --theme-accent-2: #a3a3a3;
+  --theme-accent-fg: #080808;
+  --theme-accent-soft: rgba(255, 255, 255, 0.09);
+  --theme-accent-border: rgba(255, 255, 255, 0.42);
+  --theme-accent-glow: 0 6px 24px rgba(255, 255, 255, 0.16);
+  --theme-btn-gradient: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+  --theme-text-gradient: linear-gradient(90deg, #ffffff 0%, #d4d4d4 50%, #9ca3af 100%);
+  --theme-status: #ffffff;
+  --theme-status-soft: rgba(255, 255, 255, 0.1);
+  --theme-status-text: #f5f5f5;
+  --theme-chip-bg: rgba(255, 255, 255, 0.07);
+  --theme-chip-hover: rgba(255, 255, 255, 0.14);
+
+  --theme-radius-card: 4px;
+  --theme-radius-lg: 4px;
+  --theme-radius-md: 3px;
+  --theme-radius-pill: 2px;
+  --theme-radius-dock: 4px;
+  --theme-radius-island: 4px;
+  --theme-radius-avatar: 4px;
+  --theme-selection-bg: #ffffff;
+  --theme-selection-fg: #080808;
+  --theme-scrollbar: rgba(255, 255, 255, 0.25);
+  --theme-scrollbar-hover: rgba(255, 255, 255, 0.55);
+}
+
+/* ----------------------------------------------------------------------------
+   6. MATRIX TERMINAL (Phosphor CRT Hacker Shell)
+   ---------------------------------------------------------------------------- */
+[data-theme="terminal"] {
+  --background: 132 54% 2.8%;
+  --foreground: 136 86% 82%;
+  --card: 134 52% 5.5%;
+  --card-foreground: 136 86% 82%;
+  --popover: 134 52% 5%;
+  --popover-foreground: 136 86% 82%;
+  --primary: 144 100% 50%;
+  --primary-foreground: 135 60% 4%;
+  --secondary: 136 42% 11%;
+  --secondary-foreground: 136 86% 82%;
+  --muted: 136 36% 10%;
+  --muted-foreground: 138 42% 56%;
+  --accent: 144 100% 50%;
+  --accent-foreground: 135 60% 4%;
+  --destructive: 38 100% 50%;
+  --destructive-foreground: 135 60% 4%;
+  --border: 144 65% 24%;
+  --input: 144 65% 26%;
+  --ring: 144 100% 50%;
+  --radius: 2px;
+
+  --font-display: "JetBrains Mono", monospace;
+  --font-body: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ios-glass-bg: rgba(4, 18, 8, 0.88);
+  --ios-glass-strong: rgba(2, 12, 5, 0.95);
+  --ios-glass-border: rgba(0, 255, 102, 0.34);
+  --ios-shadow: 0 0 18px rgba(0, 255, 102, 0.1), 0 8px 24px rgba(0, 0, 0, 0.7);
+  --ios-shadow-hover: 0 0 26px rgba(0, 255, 102, 0.25), inset 0 0 14px rgba(0, 255, 102, 0.08);
+  --surface-blur: 4px;
+  --surface-border-width: 1px;
+  --surface-inset: inset 0 1px 0 0 rgba(0, 255, 102, 0.24);
+
+  --theme-accent: #00ff66;
+  --theme-accent-2: #ffb000;
+  --theme-accent-fg: #021205;
+  --theme-accent-soft: rgba(0, 255, 102, 0.12);
+  --theme-accent-border: rgba(0, 255, 102, 0.45);
+  --theme-accent-glow: 0 0 22px rgba(0, 255, 102, 0.42);
+  --theme-btn-gradient: linear-gradient(135deg, #00ff66 0%, #00cc52 100%);
+  --theme-text-gradient: linear-gradient(90deg, #00ff66 0%, #7dffb3 55%, #ffb000 100%);
+  --theme-status: #00ff66;
+  --theme-status-soft: rgba(0, 255, 102, 0.14);
+  --theme-status-text: #00ff66;
+  --theme-chip-bg: rgba(0, 255, 102, 0.08);
+  --theme-chip-hover: rgba(0, 255, 102, 0.16);
+
+  --theme-radius-card: 2px;
+  --theme-radius-lg: 2px;
+  --theme-radius-md: 2px;
+  --theme-radius-pill: 2px;
+  --theme-radius-dock: 2px;
+  --theme-radius-island: 2px;
+  --theme-radius-avatar: 2px;
+  --theme-selection-bg: #00ff66;
+  --theme-selection-fg: #030a04;
+  --theme-scrollbar: rgba(0, 255, 102, 0.35);
+  --theme-scrollbar-hover: #00ff66;
+}
+
+/* ----------------------------------------------------------------------------
+   7. NEO-BRUTALIST POP (Studio Paper & Bold Ink)
+   ---------------------------------------------------------------------------- */
+[data-theme="neobrutal"] {
+  --background: 45 72% 93%;
+  --foreground: 0 0% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 7%;
+  --primary: 0 100% 67%;
+  --primary-foreground: 0 0% 7%;
+  --secondary: 48 96% 62%;
+  --secondary-foreground: 0 0% 7%;
+  --muted: 44 42% 86%;
+  --muted-foreground: 28 8% 30%;
+  --accent: 48 96% 53%;
+  --accent-foreground: 0 0% 7%;
+  --destructive: 0 85% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 0 0% 8%;
+  --ring: 221 83% 53%;
+  --radius: 0.75rem;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ios-glass-bg: #ffffff;
+  --ios-glass-strong: #ffffff;
+  --ios-glass-border: #111111;
+  --ios-shadow: 5px 5px 0px #111111;
+  --ios-shadow-hover: 8px 8px 0px #111111;
+  --surface-blur: 0px;
+  --surface-border-width: 2.5px;
+  --surface-inset: none;
+
+  --theme-accent: #ff5c5c;
+  --theme-accent-2: #facc15;
+  --theme-accent-fg: #111111;
+  --theme-accent-soft: #fde047;
+  --theme-accent-border: #111111;
+  --theme-accent-glow: 4px 4px 0px #111111;
+  --theme-btn-gradient: linear-gradient(135deg, #facc15 0%, #fbbf24 100%);
+  --theme-text-gradient: linear-gradient(90deg, #ff4d4d 0%, #2563eb 55%, #111111 100%);
+  --theme-status: #10b981;
+  --theme-status-soft: #bbf7d0;
+  --theme-status-text: #065f46;
+  --theme-chip-bg: #fef3c7;
+  --theme-chip-hover: #fde68a;
+
+  --theme-radius-card: 0.85rem;
+  --theme-radius-lg: 1rem;
+  --theme-radius-md: 0.6rem;
+  --theme-radius-pill: 0.65rem;
+  --theme-radius-dock: 0.85rem;
+  --theme-radius-island: 0.85rem;
+  --theme-radius-avatar: 0.85rem;
+  --theme-selection-bg: #facc15;
+  --theme-selection-fg: #111111;
+  --theme-scrollbar: #111111;
+  --theme-scrollbar-hover: #ff5c5c;
+}
+
+/* ----------------------------------------------------------------------------
+   8. VAPORWAVE 1984 (Outrun Sunset & Chrome)
+   ---------------------------------------------------------------------------- */
+[data-theme="vaporwave"] {
+  --background: 266 72% 8%;
+  --foreground: 295 100% 97%;
+  --card: 264 62% 14%;
+  --card-foreground: 295 100% 97%;
+  --popover: 264 62% 12%;
+  --popover-foreground: 295 100% 97%;
+  --primary: 316 100% 65%;
+  --primary-foreground: 266 75% 8%;
+  --secondary: 264 48% 20%;
+  --secondary-foreground: 295 100% 97%;
+  --muted: 264 42% 18%;
+  --muted-foreground: 268 48% 76%;
+  --accent: 158 100% 51%;
+  --accent-foreground: 266 75% 8%;
+  --destructive: 350 96% 62%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 316 70% 42%;
+  --input: 316 55% 36%;
+  --ring: 158 100% 51%;
+  --radius: 1rem;
+
+  --font-display: "Syne", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ios-glass-bg: rgba(31, 13, 58, 0.76);
+  --ios-glass-strong: rgba(24, 9, 46, 0.9);
+  --ios-glass-border: rgba(255, 78, 205, 0.36);
+  --ios-shadow: 0 10px 30px rgba(8, 2, 20, 0.55), 0 0 22px rgba(255, 78, 205, 0.14);
+  --ios-shadow-hover: 0 14px 36px rgba(8, 2, 20, 0.7), 0 0 30px rgba(5, 255, 161, 0.24);
+  --surface-blur: 14px;
+  --surface-border-width: 1px;
+  --surface-inset: inset 0 1px 0 0 rgba(5, 255, 161, 0.28);
+
+  --theme-accent: #ff4ecd;
+  --theme-accent-2: #05ffa1;
+  --theme-accent-fg: #140524;
+  --theme-accent-soft: rgba(255, 78, 205, 0.16);
+  --theme-accent-border: rgba(255, 78, 205, 0.48);
+  --theme-accent-glow: 0 6px 26px rgba(255, 78, 205, 0.45);
+  --theme-btn-gradient: linear-gradient(135deg, #ff4ecd 0%, #ff8a3d 55%, #05ffa1 100%);
+  --theme-text-gradient: linear-gradient(90deg, #ff4ecd 0%, #ffb86c 48%, #05ffa1 100%);
+  --theme-status: #05ffa1;
+  --theme-status-soft: rgba(5, 255, 161, 0.15);
+  --theme-status-text: #05ffa1;
+  --theme-chip-bg: rgba(255, 78, 205, 0.12);
+  --theme-chip-hover: rgba(5, 255, 161, 0.18);
+
+  --theme-radius-card: 1.25rem;
+  --theme-radius-lg: 1.5rem;
+  --theme-radius-md: 0.85rem;
+  --theme-radius-pill: 9999px;
+  --theme-radius-dock: 1.25rem;
+  --theme-radius-island: 1.25rem;
+  --theme-radius-avatar: 1.5rem;
+  --theme-selection-bg: rgba(255, 78, 205, 0.4);
+  --theme-selection-fg: #ffffff;
+  --theme-scrollbar: rgba(255, 78, 205, 0.45);
+  --theme-scrollbar-hover: #05ffa1;
+}
+
+/* ============================================================================
+   SEMANTIC THEME-ADAPTIVE COMPONENT UTILITIES
+   ============================================================================ */
+
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--theme-selection-bg);
+  color: var(--theme-selection-fg);
+}
+
+/* Shared semantic surface / card classes */
+.theme-surface,
+.ios-glass {
+  background: var(--ios-glass-bg);
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: var(--surface-border-width) solid var(--ios-glass-border);
+  box-shadow: var(--ios-shadow), var(--surface-inset);
+  transform: translateZ(0);
+}
+
+.theme-surface-strong {
+  background: var(--ios-glass-strong);
+  backdrop-filter: blur(calc(var(--surface-blur) + 4px));
+  -webkit-backdrop-filter: blur(calc(var(--surface-blur) + 4px));
+  border: var(--surface-border-width) solid var(--ios-glass-border);
+  box-shadow: var(--ios-shadow), var(--surface-inset);
+  transform: translateZ(0);
+}
+
+.theme-card,
+.ios-glass-card {
+  background: var(--ios-glass-bg);
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: var(--surface-border-width) solid var(--ios-glass-border);
+  box-shadow: var(--ios-shadow), var(--surface-inset);
+  border-radius: var(--theme-radius-card);
+  transition: transform 0.22s ease-out, box-shadow 0.22s ease-out, border-color 0.22s ease-out, background-color 0.22s ease-out;
+  transform: translateZ(0);
+}
+
+.theme-card-hover,
+.ios-glass-card-hover {
+  background: var(--ios-glass-bg);
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: var(--surface-border-width) solid var(--ios-glass-border);
+  box-shadow: var(--ios-shadow), var(--surface-inset);
+  border-radius: var(--theme-radius-card);
+  transition: transform 0.22s ease-out, box-shadow 0.22s ease-out, border-color 0.22s ease-out, background-color 0.22s ease-out;
+  transform: translateZ(0);
+}
+
+.theme-card-hover:hover,
+.ios-glass-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ios-shadow-hover), var(--surface-inset);
+  border-color: var(--theme-accent-border);
+}
+
+.theme-btn-primary {
+  background: var(--theme-btn-gradient);
+  color: var(--theme-accent-fg);
+  border: var(--surface-border-width) solid transparent;
+  border-radius: var(--theme-radius-pill);
+  box-shadow: var(--theme-accent-glow);
+  font-weight: 600;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.theme-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.theme-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.theme-btn-secondary {
+  background: var(--ios-glass-bg);
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  color: hsl(var(--foreground));
+  border: var(--surface-border-width) solid var(--ios-glass-border);
+  border-radius: var(--theme-radius-pill);
+  box-shadow: var(--ios-shadow), var(--surface-inset);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.theme-btn-secondary:hover {
+  border-color: var(--theme-accent-border);
+  background: var(--theme-chip-hover);
+}
+
+.theme-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.theme-badge-accent {
+  background: var(--theme-accent-soft);
+  color: var(--theme-accent);
+  border: 1px solid var(--theme-accent-border);
+  border-radius: var(--theme-radius-pill);
+}
+
+.theme-status-pill {
+  background: var(--theme-status-soft);
+  color: var(--theme-status-text);
+  border: 1px solid color-mix(in srgb, var(--theme-status) 32%, transparent);
+  border-radius: var(--theme-radius-pill);
+}
+
+.theme-chip {
+  background: var(--theme-chip-bg);
+  border: 1px solid var(--ios-glass-border);
+  border-radius: var(--theme-radius-md);
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.theme-chip:hover {
+  background: var(--theme-chip-hover);
+  border-color: var(--theme-accent-border);
+}
+
+.theme-chip-hot {
+  background: var(--theme-accent-soft);
+  color: var(--theme-accent);
+  border: 1px solid var(--theme-accent-border);
+  border-radius: var(--theme-radius-md);
+}
+
+.theme-input {
+  background: var(--ios-glass-bg);
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: var(--surface-border-width) solid var(--ios-glass-border);
+  border-radius: var(--theme-radius-md);
+  color: hsl(var(--foreground));
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.theme-input:focus {
+  outline: none;
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 0 3px var(--theme-accent-soft);
+}
+
+.theme-text-gradient,
+.text-gradient-ios {
+  background-image: var(--theme-text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.theme-dock {
+  border-radius: var(--theme-radius-dock);
+}
+
+.theme-island {
+  border-radius: var(--theme-radius-island);
+}
+
+.theme-avatar-frame {
+  border-radius: var(--theme-radius-avatar);
+}
+
+.theme-accent-text {
+  color: var(--theme-accent);
+}
+
+.theme-accent-2-text {
+  color: var(--theme-accent-2);
+}
+
+/* ============================================================================
+   PER-THEME STRUCTURAL & ARTISTIC SIGNATURE OVERRIDES
+   ============================================================================ */
+
+/* --- PIXEL ARCADE 8-BIT --- */
+[data-theme="pixel"] .theme-card,
+[data-theme="pixel"] .ios-glass-card,
+[data-theme="pixel"] .theme-card-hover,
+[data-theme="pixel"] .ios-glass-card-hover,
+[data-theme="pixel"] .theme-surface,
+[data-theme="pixel"] .ios-glass,
+[data-theme="pixel"] .theme-surface-strong,
+[data-theme="pixel"] .theme-btn-primary,
+[data-theme="pixel"] .theme-btn-secondary,
+[data-theme="pixel"] .theme-badge-accent,
+[data-theme="pixel"] .theme-status-pill,
+[data-theme="pixel"] .theme-chip,
+[data-theme="pixel"] .theme-chip-hot,
+[data-theme="pixel"] .theme-input,
+[data-theme="pixel"] .theme-dock,
+[data-theme="pixel"] .theme-island,
+[data-theme="pixel"] .theme-avatar-frame,
+[data-theme="pixel"] .theme-media-frame {
+  border-radius: 0px !important;
+}
+
+[data-theme="pixel"] .theme-btn-primary {
+  border: 3px solid #121026;
+  box-shadow: inset -3px -3px 0px #c48800, inset 3px 3px 0px #fff3b0, 4px 4px 0px #080614;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+[data-theme="pixel"] .theme-btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: inset -3px -3px 0px #c48800, inset 3px 3px 0px #fff3b0, 6px 6px 0px #080614;
+}
+
+[data-theme="pixel"] .theme-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: inset -2px -2px 0px #c48800, inset 2px 2px 0px #fff3b0, 2px 2px 0px #080614;
+}
+
+[data-theme="pixel"] .theme-btn-secondary:hover,
+[data-theme="pixel"] .theme-card-hover:hover,
+[data-theme="pixel"] .ios-glass-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #080614, var(--surface-inset);
+  border-color: #ffd541;
+}
+
+[data-theme="pixel"] h1 {
+  font-size: clamp(1.5rem, 3.8vw, 2.55rem) !important;
+  line-height: 1.38 !important;
+  letter-spacing: 0.01em !important;
+}
+
+[data-theme="pixel"] h2 {
+  font-size: clamp(1.05rem, 2.3vw, 1.5rem) !important;
+  line-height: 1.45 !important;
+}
+
+[data-theme="pixel"] h3 {
+  font-size: clamp(0.82rem, 1.5vw, 0.98rem) !important;
+  line-height: 1.45 !important;
+}
+
+[data-theme="pixel"] .theme-stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2vw, 1.3rem) !important;
+  line-height: 1.35;
+}
+
+[data-theme="pixel"] .theme-media-img {
+  image-rendering: auto;
+}
+
+/* --- CYBERPUNK 2077 --- */
+[data-theme="cyberpunk"] body {
+  letter-spacing: 0.015em;
+}
+
+[data-theme="cyberpunk"] .theme-hero-title {
+  text-shadow: -1.5px 0 rgba(255, 0, 110, 0.5), 1.5px 0 rgba(0, 240, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="cyberpunk"] .theme-btn-primary {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border-radius: 0px !important;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+}
+
+[data-theme="cyberpunk"] .theme-btn-secondary {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  border-radius: 0px !important;
+}
+
+[data-theme="cyberpunk"] .theme-card,
+[data-theme="cyberpunk"] .ios-glass-card,
+[data-theme="cyberpunk"] .theme-card-hover,
+[data-theme="cyberpunk"] .ios-glass-card-hover {
+  border-radius: 2px !important;
+  border-top: 2px solid rgba(0, 240, 255, 0.58);
+}
+
+[data-theme="cyberpunk"] .theme-card-hover:hover,
+[data-theme="cyberpunk"] .ios-glass-card-hover:hover {
+  border-color: #fcee0a;
+  border-top-color: #fcee0a;
+}
+
+[data-theme="cyberpunk"] .theme-dock,
+[data-theme="cyberpunk"] .theme-island {
+  border-radius: 4px !important;
+  border-color: rgba(0, 240, 255, 0.48);
+}
+
+/* --- MONOCHROME NOIR --- */
+[data-theme="monochrome"] .theme-text-gradient,
+[data-theme="monochrome"] .text-gradient-ios {
+  font-style: italic;
+}
+
+[data-theme="monochrome"] .theme-card,
+[data-theme="monochrome"] .ios-glass-card,
+[data-theme="monochrome"] .theme-card-hover,
+[data-theme="monochrome"] .ios-glass-card-hover,
+[data-theme="monochrome"] .theme-dock,
+[data-theme="monochrome"] .theme-island {
+  border-radius: 4px !important;
+}
+
+[data-theme="monochrome"] .theme-btn-primary,
+[data-theme="monochrome"] .theme-btn-secondary {
+  border-radius: 3px !important;
+}
+
+[data-theme="monochrome"] .theme-media-img {
+  filter: grayscale(100%) contrast(1.06);
+  transition: filter 0.45s ease, transform 0.5s ease;
+}
+
+[data-theme="monochrome"] .group:hover .theme-media-img,
+[data-theme="monochrome"] .theme-media-img:hover {
+  filter: grayscale(0%) contrast(1.02);
+}
+
+/* --- MATRIX TERMINAL --- */
+[data-theme="terminal"] h1,
+[data-theme="terminal"] h2,
+[data-theme="terminal"] .theme-text-gradient {
+  text-shadow: 0 0 14px rgba(0, 255, 102, 0.35);
+}
+
+[data-theme="terminal"] .theme-card,
+[data-theme="terminal"] .ios-glass-card,
+[data-theme="terminal"] .theme-card-hover,
+[data-theme="terminal"] .ios-glass-card-hover,
+[data-theme="terminal"] .theme-dock,
+[data-theme="terminal"] .theme-island,
+[data-theme="terminal"] .theme-btn-primary,
+[data-theme="terminal"] .theme-btn-secondary {
+  border-radius: 2px !important;
+}
+
+[data-theme="terminal"] .theme-badge-accent::before {
+  content: ">_ ";
+  opacity: 0.85;
+}
+
+[data-theme="terminal"] .theme-media-img {
+  filter: saturate(0.55) hue-rotate(45deg) contrast(1.08);
+  transition: filter 0.35s ease, transform 0.5s ease;
+}
+
+[data-theme="terminal"] .group:hover .theme-media-img,
+[data-theme="terminal"] .theme-media-img:hover {
+  filter: saturate(1) hue-rotate(0deg) contrast(1);
+}
+
+/* --- NEO-BRUTALIST POP --- */
+[data-theme="neobrutal"] .theme-btn-primary {
+  border: 2.5px solid #111111;
+  box-shadow: 4px 4px 0px #111111;
+  color: #111111;
+  font-weight: 700;
+}
+
+[data-theme="neobrutal"] .theme-btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #111111;
+  filter: none;
+}
+
+[data-theme="neobrutal"] .theme-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #111111;
+}
+
+[data-theme="neobrutal"] .theme-btn-secondary {
+  border: 2.5px solid #111111;
+  box-shadow: 4px 4px 0px #111111;
+}
+
+[data-theme="neobrutal"] .theme-btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #111111;
+  background: #fde047;
+}
+
+[data-theme="neobrutal"] .theme-card-hover:hover,
+[data-theme="neobrutal"] .ios-glass-card-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px #111111;
+  border-color: #111111;
+}
+
+[data-theme="neobrutal"] .theme-badge-accent {
+  background: #fde047;
+  color: #111111;
+  border: 2px solid #111111;
+  box-shadow: 2px 2px 0px #111111;
+  font-weight: 700;
+}
+
+[data-theme="neobrutal"] .theme-chip-hot {
+  background: #ff5c5c;
+  color: #ffffff;
+  border: 2px solid #111111;
+  box-shadow: 2px 2px 0px #111111;
+}
+
+[data-theme="neobrutal"] .theme-chip {
+  border: 2px solid #111111;
+}
+
+[data-theme="neobrutal"] .theme-status-pill {
+  background: #bbf7d0;
+  color: #064e3b;
+  border: 2px solid #111111;
+}
+
+/* --- VAPORWAVE 1984 --- */
+[data-theme="vaporwave"] .theme-hero-title {
+  text-shadow: 0 0 28px rgba(255, 78, 205, 0.32);
+}
+
+[data-theme="vaporwave"] .theme-btn-primary {
+  color: #120624;
+  font-weight: 700;
+}
+
+/* ============================================================================
+   ATMOSPHERIC KEYFRAMES & REDUCED MOTION
+   ============================================================================ */
+
+@keyframes synthGridScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 60px;
+  }
+}
+
+@keyframes pixelTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes pixelFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes themePulseFlash {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  35% {
+    opacity: 0.32;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+.animate-synth-grid {
+  animation: synthGridScroll 2.2s linear infinite;
+}
+
+.animate-pixel-twinkle {
+  animation: pixelTwinkle 2.4s steps(2, end) infinite;
+}
+
+.animate-pixel-float {
+  animation: pixelFloat 4s steps(4, end) infinite;
+}
+
+.animate-scanline-sweep {
+  animation: scanlineSweep 7s linear infinite;
+}
+
+.animate-theme-pulse {
+  animation: themePulseFlash 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scanline overlay helper */
+.fx-scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.16) 3px,
+    rgba(0, 0, 0, 0.16) 4px
+  );
+}
+
+/* Subtle film grain texture for monochrome */
+.fx-film-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-synth-grid,
+  .animate-pixel-twinkle,
+  .animate-pixel-float,
+  .animate-scanline-sweep,
+  .animate-liquid-drift-1,
+  .animate-liquid-drift-2,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+}
+

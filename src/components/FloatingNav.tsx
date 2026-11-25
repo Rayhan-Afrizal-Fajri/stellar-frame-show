@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Home,
@@ -9,6 +9,7 @@ import {
   Moon,
   Volume2,
   VolumeX,
+  Palette,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/hooks/useTheme";
@@ -21,70 +22,76 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  {
-    to: "/",
-    icon: Home,
-    label: "Home",
-  },
-  {
-    to: "/projects",
-    icon: Briefcase,
-    label: "Projects",
-  },
-  {
-    to: "/certifications",
-    icon: Award,
-    label: "Certs",
-  },
-  {
-    to: "/contact",
-    icon: Send,
-    label: "Contact",
-  },
+  { to: "/", icon: Home, label: "Home" },
+  { to: "/projects", icon: Briefcase, label: "Projects" },
+  { to: "/certifications", icon: Award, label: "Certs" },
+  { to: "/contact", icon: Send, label: "Contact" },
 ];
 
 export const FloatingNav: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, activeTheme, toggleTheme, toggleStudio, isStudioOpen } = useTheme();
   const location = useLocation();
   const [isMuted, setIsMuted] = useState(sound.muted);
 
+  useEffect(() => {
+    return sound.subscribe(setIsMuted);
+  }, []);
+
   const handleSoundToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const muted = sound.toggleMute();
-    setIsMuted(muted);
+    sound.toggleMute();
   };
 
   const handleThemeToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
-    sound.playSwitch(theme !== "dark");
     toggleTheme();
+  };
+
+  const handleOpenStudio = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleStudio();
   };
 
   return (
     <nav
-      className="fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 select-none pointer-events-auto transform-gpu"
+      className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 select-none pointer-events-auto transform-gpu"
       aria-label="Main Dock"
     >
-      <div className="relative flex items-center gap-1 p-1.5 sm:p-2 rounded-[26px] ios-glass border border-white/50 dark:border-white/15 bg-white/80 dark:bg-zinc-950/80 shadow-[0_12px_36px_rgba(0,0,0,0.18)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.55)]">
+      <div className="relative flex items-center gap-1 p-1.5 sm:p-2 theme-surface-strong theme-dock">
         {/* Navigation Items */}
         {navItems.map(({ to, icon: Icon, label }) => {
-          const isActive = location.pathname === to;
+          const isActive =
+            to === "/"
+              ? location.pathname === "/"
+              : location.pathname === to || location.pathname.startsWith(`${to}/`);
 
           return (
             <NavLink
               key={to}
               to={to}
               onClick={() => sound.playTap()}
-              className={`relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-[20px] transition-colors group ${
-                isActive ? "text-white" : "text-muted-foreground hover:text-foreground"
-              }`}
+              className="relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 transition-colors group"
+              style={{
+                borderRadius: "var(--theme-radius-md)",
+                color: isActive ? "var(--theme-accent-fg)" : undefined,
+              }}
               title={label}
             >
-              {/* Active Pill with high-performance hardware-accelerated transition */}
               {isActive && (
                 <motion.div
                   layoutId="dock-active-pill"
-                  className="absolute inset-0 rounded-[20px] bg-gradient-to-b from-blue-600 to-indigo-600 shadow-[0_4px_14px_rgba(59,130,246,0.4)]"
+                  className="absolute inset-0"
+                  style={{
+                    background: "var(--theme-btn-gradient)",
+                    boxShadow: "var(--theme-accent-glow)",
+                    borderRadius: "var(--theme-radius-md)",
+                    border:
+                      activeTheme.id === "neobrutal"
+                        ? "2px solid #111111"
+                        : activeTheme.id === "pixel"
+                          ? "2px solid #121026"
+                          : undefined,
+                  }}
                   transition={{
                     type: "spring",
                     stiffness: 500,
@@ -94,7 +101,11 @@ export const FloatingNav: React.FC = () => {
                 />
               )}
 
-              <span className="relative z-10 flex items-center justify-center group-hover:scale-110 group-active:scale-95 transition-transform duration-150">
+              <span
+                className={`relative z-10 flex items-center justify-center group-hover:scale-110 group-active:scale-95 transition-transform duration-150 ${
+                  isActive ? "" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
                 <Icon size={19} />
               </span>
             </NavLink>
@@ -102,35 +113,62 @@ export const FloatingNav: React.FC = () => {
         })}
 
         {/* Separator */}
-        <div className="w-[1px] h-6 bg-border/70 mx-1 rounded-full" />
+        <div className="w-[1px] h-6 bg-border/80 mx-1" />
+
+        {/* Theme Studio Picker Button */}
+        <button
+          type="button"
+          onClick={handleOpenStudio}
+          data-testid="dock-theme-studio-btn"
+          className={`relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 active:scale-95 transition-all ${
+            isStudioOpen
+              ? "theme-badge-accent"
+              : "text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10"
+          }`}
+          style={{ borderRadius: "var(--theme-radius-md)" }}
+          title={`Theme Studio (${activeTheme.name}) — Press T`}
+          aria-label="Open Theme Studio"
+          aria-expanded={isStudioOpen}
+        >
+          <Palette size={17} style={{ color: "var(--theme-accent)" }} />
+          <span
+            className="absolute bottom-1.5 right-1.5 w-2 h-2 border border-background"
+            style={{
+              backgroundColor: activeTheme.swatches[2],
+              borderRadius: activeTheme.id === "pixel" ? "0px" : "999px",
+            }}
+          />
+        </button>
 
         {/* Sound Toggle */}
         <button
           type="button"
           onClick={handleSoundToggle}
-          className="relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-[18px] text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
-          title={isMuted ? "Unmute sound" : "Mute sound"}
+          className="relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
+          style={{ borderRadius: "var(--theme-radius-md)" }}
+          title={isMuted ? "Unmute sound" : `Mute sound (${activeTheme.soundLabel})`}
           aria-label="Toggle Sound"
         >
           {isMuted ? (
             <VolumeX size={17} />
           ) : (
-            <Volume2 size={17} className="text-blue-500" />
+            <Volume2 size={17} style={{ color: "var(--theme-accent)" }} />
           )}
         </button>
 
-        {/* Theme Toggle */}
+        {/* Quick Light / Dark Toggle */}
         <button
           type="button"
           onClick={handleThemeToggle}
-          className="relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-[18px] text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
-          title="Toggle Theme"
-          aria-label="Toggle Theme"
+          className="relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all"
+          style={{ borderRadius: "var(--theme-radius-md)" }}
+          title={theme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme"}
+          aria-label="Toggle Light Dark Theme"
         >
           {theme === "dark" ? (
-            <Sun size={17} className="text-amber-400" />
+            <Sun size={17} style={{ color: "var(--theme-accent)" }} />
           ) : (
-            <Moon size={17} className="text-indigo-500" />
+            <Moon size={17} style={{ color: "var(--theme-accent)" }} />
           )}
         </button>
       </div>

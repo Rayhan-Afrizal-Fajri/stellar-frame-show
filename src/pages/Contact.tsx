@@ -91,11 +91,11 @@ export const Contact: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="mb-10 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-medium mb-3">
+          <div className="theme-badge-accent inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium mb-3">
             <MessageSquare size={13} />
             <span>Direct Channels</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+          <h1 className="theme-hero-title text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
             Let's Start a Conversation
           </h1>
           <p className="text-muted-foreground mt-2 max-w-xl text-sm sm:text-base leading-relaxed">
@@ -114,11 +114,11 @@ export const Contact: React.FC = () => {
           >
             <form
               onSubmit={handleSubmit}
-              className="ios-glass-card p-6 sm:p-8 rounded-[32px] space-y-5"
+              className="theme-card p-6 sm:p-8 space-y-5"
             >
               <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
                 <span>Send a Direct Message</span>
-                <Sparkles size={16} className="text-blue-500" />
+                <Sparkles size={16} className="theme-accent-text" />
               </h2>
 
               {/* Subject Selector Pills */}
@@ -135,10 +135,10 @@ export const Contact: React.FC = () => {
                         sound.playTap();
                         setSelectedSubject(subj);
                       }}
-                      className={`text-xs px-3 py-1.5 rounded-xl transition-all ${
+                      className={`text-xs px-3 py-1.5 transition-all ${
                         selectedSubject === subj
-                          ? "bg-blue-600 text-white font-medium shadow-sm"
-                          : "bg-black/5 dark:bg-white/5 text-muted-foreground hover:text-foreground"
+                          ? "theme-btn-primary"
+                          : "theme-chip text-muted-foreground hover:text-foreground"
                       }`}
                     >
                       {subj}
@@ -157,7 +157,7 @@ export const Contact: React.FC = () => {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-2xl ios-glass text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 border border-white/50 dark:border-white/10"
+                  className="theme-input w-full px-4 py-3 text-sm placeholder:text-muted-foreground"
                   placeholder="e.g. Alex Graham"
                 />
               </div>
@@ -171,7 +171,7 @@ export const Contact: React.FC = () => {
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-2xl ios-glass text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 border border-white/50 dark:border-white/10"
+                  className="theme-input w-full px-4 py-3 text-sm placeholder:text-muted-foreground"
                   placeholder="alex@company.com"
                 />
               </div>
@@ -185,7 +185,7 @@ export const Contact: React.FC = () => {
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-2xl ios-glass text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/40 border border-white/50 dark:border-white/10 resize-none"
+                  className="theme-input w-full px-4 py-3 text-sm placeholder:text-muted-foreground resize-none"
                   placeholder="Tell me about your goals, timeline, or tech stack requirements..."
                 />
               </div>
@@ -193,7 +193,7 @@ export const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium text-sm shadow-[0_4px_20px_rgba(59,130,246,0.35)] hover:shadow-[0_6px_24px_rgba(59,130,246,0.5)] active:scale-95 transition-all disabled:opacity-50"
+                className="theme-btn-primary w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm disabled:opacity-50"
               >
                 <Send size={15} />
                 <span>{isSubmitting ? "Opening Mail..." : "Send Message via Email"}</span>
@@ -209,7 +209,7 @@ export const Contact: React.FC = () => {
             className="lg:col-span-5 space-y-4"
           >
             {/* Quick Email Copy Card */}
-            <div className="ios-glass-card p-5 sm:p-6 rounded-[28px] space-y-3">
+            <div className="theme-card p-5 sm:p-6 space-y-3">
               <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground block">
                 Primary Contact
               </span>
@@ -220,11 +220,11 @@ export const Contact: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl ios-glass border border-white/40 dark:border-white/10 text-xs font-medium text-foreground hover:bg-black/5 dark:hover:bg-white/10 transition-all shadow-sm"
+                  className="theme-btn-secondary flex-1 inline-flex items-center justify-center gap-2 py-2 px-3 text-xs font-medium"
                 >
                   {copied ? (
                     <>
-                      <Check size={14} className="text-emerald-500" />
+                      <Check size={14} style={{ color: "var(--theme-status)" }} />
                       <span>Copied!</span>
                     </>
                   ) : (
@@ -238,7 +238,7 @@ export const Contact: React.FC = () => {
                 <a
                   href={`mailto:${cleanEmail}`}
                   onClick={() => sound.playPop()}
-                  className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl bg-blue-600 text-white text-xs font-medium shadow-sm hover:opacity-90"
+                  className="theme-btn-primary inline-flex items-center justify-center gap-1.5 py-2 px-4 text-xs"
                 >
                   <Mail size={14} />
                   <span>Compose</span>
@@ -247,11 +247,17 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Availability & Turnaround Widget */}
-            <div className="ios-glass-card p-5 sm:p-6 rounded-[28px] space-y-3">
+            <div className="theme-card p-5 sm:p-6 space-y-3">
               <div className="flex items-center gap-2">
                 <span className="flex h-2.5 w-2.5 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  <span
+                    className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                    style={{ backgroundColor: "var(--theme-status)" }}
+                  />
+                  <span
+                    className="relative inline-flex rounded-full h-2.5 w-2.5"
+                    style={{ backgroundColor: "var(--theme-status)" }}
+                  />
                 </span>
                 <span className="text-xs font-semibold text-foreground">
                   Status: Open for Engagements
@@ -260,18 +266,18 @@ export const Contact: React.FC = () => {
 
               <div className="space-y-2 text-xs text-muted-foreground pt-1">
                 <div className="flex items-center gap-2">
-                  <Clock size={13} className="text-blue-500 flex-shrink-0" />
+                  <Clock size={13} className="theme-accent-text flex-shrink-0" />
                   <span>Response time: within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin size={13} className="text-indigo-500 flex-shrink-0" />
+                  <MapPin size={13} className="theme-accent-2-text flex-shrink-0" />
                   <span>Indonesia (WIB / UTC+7) · Remote Worldwide</span>
                 </div>
               </div>
             </div>
 
             {/* Social Network Links */}
-            <div className="ios-glass-card p-5 sm:p-6 rounded-[28px] space-y-3">
+            <div className="theme-card p-5 sm:p-6 space-y-3">
               <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground block">
                 Connect on Networks
               </span>
@@ -288,7 +294,7 @@ export const Contact: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => sound.playPop()}
-                        className="flex items-center gap-2.5 p-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-border/40 hover:bg-black/10 dark:hover:bg-white/10 transition-all text-xs font-medium text-foreground"
+                        className="theme-chip flex items-center gap-2.5 p-3 text-xs font-medium text-foreground"
                       >
                         <Icon size={16} />
                         <span>{item.label}</span>
@@ -303,7 +309,7 @@ export const Contact: React.FC = () => {
         {/* FAQ Section */}
         <div className="mt-16 sm:mt-20">
           <div className="flex items-center gap-2 mb-6">
-            <HelpCircle size={18} className="text-blue-500" />
+            <HelpCircle size={18} className="theme-accent-text" />
             <h2 className="text-xl font-bold text-foreground">
               Frequently Asked Questions
             </h2>
@@ -315,7 +321,7 @@ export const Contact: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="ios-glass-card rounded-2xl overflow-hidden"
+                  className="theme-card overflow-hidden"
                 >
                   <button
                     type="button"

@@ -1,13 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="liquid-dark" data-fx="full" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Rayhan Afrizal Fajri — Full-Stack & ERP Systems Engineer</title>
-    <meta name="description" content="Portfolio of Rayhan Afrizal Fajri — Full-stack web developer specializing in enterprise ERP systems, manufacturing workflows, and scalable architectures with modern iOS liquid glass aesthetics." />
+    <meta name="description" content="Portfolio of Rayhan Afrizal Fajri — Full-stack web developer specializing in enterprise ERP systems, manufacturing workflows, and scalable architectures with multi-theme interactive aesthetics." />
     <meta name="author" content="Rayhan Afrizal Fajri" />
-    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0e17" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -16,9 +15,51 @@
     <meta property="og:description" content="Full-stack developer focused on building structured, scalable systems, backend logic, and enterprise ERP architectures." />
     <meta property="og:type" content="website" />
 
-    <!-- Preconnect Fonts -->
+    <!-- Zero-FOUC Theme Bootstrap -->
+    <script>
+      (function () {
+        try {
+          var valid = {
+            "liquid-dark": { dark: true, color: "#0b0e17" },
+            "liquid-light": { dark: false, color: "#f5f7fb" },
+            pixel: { dark: true, color: "#121026" },
+            cyberpunk: { dark: true, color: "#06060d" },
+            monochrome: { dark: true, color: "#080808" },
+            terminal: { dark: true, color: "#030a04" },
+            neobrutal: { dark: false, color: "#faf4e1" },
+            vaporwave: { dark: true, color: "#120624" }
+          };
+          var params = new URLSearchParams(window.location.search);
+          var q = params.get("theme");
+          var stored = localStorage.getItem("portfolio_theme");
+          var legacy = localStorage.getItem("theme");
+          var chosen = "liquid-dark";
+          if (q && valid[q]) chosen = q;
+          else if (stored && valid[stored]) chosen = stored;
+          else if (legacy === "light") chosen = "liquid-light";
+
+          var fx = localStorage.getItem("portfolio_fx");
+          if (fx !== "off" && fx !== "subtle" && fx !== "full") {
+            fx = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "off" : "full";
+          }
+
+          var root = document.documentElement;
+          root.setAttribute("data-theme", chosen);
+          root.setAttribute("data-fx", fx);
+          root.classList.toggle("dark", !!valid[chosen].dark);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", valid[chosen].color);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Preconnect & Multi-Theme Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Press+Start+2P&family=Rajdhani:wght@500;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>

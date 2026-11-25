@@ -16,6 +16,7 @@ import {
   Workflow,
   ExternalLink,
   ChevronRight,
+  Palette,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
@@ -30,6 +31,7 @@ import {
 import { sound } from "@/lib/audio";
 import { toast } from "sonner";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/hooks/useTheme";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -56,6 +58,7 @@ const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 export const Index: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [activeTechCategory, setActiveTechCategory] = useState<string>("All");
+  const { activeTheme, openStudio } = useTheme();
 
   const handleCopyEmail = () => {
     sound.playPop();
@@ -85,26 +88,48 @@ export const Index: React.FC = () => {
             <motion.div variants={itemVariants} className="relative">
               {/* Outer Liquid Breathing Halo */}
               <div
-                className="absolute -inset-3 sm:-inset-4 rounded-full bg-gradient-to-tr from-blue-500/40 via-indigo-500/30 to-purple-500/40 blur-xl opacity-75 dark:opacity-60 animate-pulse-glow"
+                className="absolute -inset-3 sm:-inset-4 rounded-full blur-xl opacity-35 dark:opacity-30 animate-pulse-glow"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--theme-accent), var(--theme-accent-2))",
+                }}
                 aria-hidden="true"
               />
 
               <div className="relative group">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-[32px] sm:rounded-[38px] overflow-hidden p-1 bg-gradient-to-b from-white/80 via-white/20 to-white/60 dark:from-white/25 dark:via-transparent dark:to-white/10 shadow-2xl backdrop-blur-md">
+                <div
+                  className="w-32 h-32 sm:w-40 sm:h-40 theme-avatar-frame overflow-hidden p-1 shadow-2xl backdrop-blur-md"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--theme-accent), var(--theme-accent-2))",
+                  }}
+                >
                   <img
                     src={profileImg}
                     alt={personalInfo.name}
-                    className="w-full h-full object-cover rounded-[28px] sm:rounded-[34px] group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover theme-avatar-frame theme-media-img group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
                 {/* Live Status Pill badge */}
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full ios-glass border border-white/50 dark:border-white/15 shadow-md flex items-center gap-1.5 whitespace-nowrap">
+                <div
+                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 px-3 py-1 theme-surface-strong flex items-center gap-1.5 whitespace-nowrap shadow-lg"
+                  style={{
+                    borderRadius: "var(--theme-radius-pill)",
+                    borderColor: "color-mix(in srgb, var(--theme-status) 55%, var(--ios-glass-border))",
+                  }}
+                >
                   <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    <span
+                      className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                      style={{ backgroundColor: "var(--theme-status)" }}
+                    />
+                    <span
+                      className="relative inline-flex rounded-full h-2 w-2"
+                      style={{ backgroundColor: "var(--theme-status)" }}
+                    />
                   </span>
-                  <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="text-[11px] font-medium">
                     Open to Work
                   </span>
                 </div>
@@ -113,18 +138,36 @@ export const Index: React.FC = () => {
 
             {/* Headline and Intro */}
             <motion.div variants={itemVariants} className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ios-glass border border-white/40 dark:border-white/10 text-xs text-muted-foreground shadow-sm">
-                <Sparkles size={13} className="text-amber-500" />
-                <span>{personalInfo.title}</span>
-                <span>·</span>
-                <span className="flex items-center gap-1 text-foreground font-medium">
-                  <MapPin size={12} className="text-blue-500" /> {personalInfo.location}
-                </span>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <div
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 theme-surface text-xs text-muted-foreground shadow-sm"
+                  style={{ borderRadius: "var(--theme-radius-pill)" }}
+                >
+                  <Sparkles size={13} className="theme-accent-2-text" />
+                  <span>{personalInfo.title}</span>
+                  <span>·</span>
+                  <span className="flex items-center gap-1 text-foreground font-medium">
+                    <MapPin size={12} className="theme-accent-text" /> {personalInfo.location}
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    sound.playTap();
+                    openStudio();
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 theme-badge-accent text-xs font-medium hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+                  title="Switch visual theme (Press T)"
+                >
+                  <Palette size={12} />
+                  <span>Theme: {activeTheme.shortName}</span>
+                </button>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12]">
+              <h1 className="theme-hero-title text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12]">
                 Engineering Scalable Systems With{" "}
-                <span className="text-gradient-ios">Precision</span>
+                <span className="theme-text-gradient">Precision</span>
               </h1>
 
               <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -141,7 +184,7 @@ export const Index: React.FC = () => {
               <Link
                 to="/projects"
                 onClick={() => sound.playPop()}
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium text-sm shadow-[0_4px_20px_rgba(59,130,246,0.35)] hover:shadow-[0_6px_24px_rgba(59,130,246,0.5)] hover:scale-[1.02] active:scale-95 transition-all"
+                className="theme-btn-primary inline-flex items-center gap-2.5 px-6 py-3.5 text-sm"
               >
                 <Briefcase size={16} />
                 <span>Explore Projects</span>
@@ -151,11 +194,11 @@ export const Index: React.FC = () => {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass border border-white/50 dark:border-white/15 text-foreground font-medium text-sm hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all shadow-sm"
+                className="theme-btn-secondary inline-flex items-center gap-2 px-5 py-3.5 font-medium text-sm"
               >
                 {copied ? (
                   <>
-                    <Check size={16} className="text-emerald-500" />
+                    <Check size={16} style={{ color: "var(--theme-status)" }} />
                     <span>Copied!</span>
                   </>
                 ) : (
@@ -169,7 +212,7 @@ export const Index: React.FC = () => {
               <Link
                 to="/contact"
                 onClick={() => sound.playTap()}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass border border-white/50 dark:border-white/15 text-foreground font-medium text-sm hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all shadow-sm"
+                className="theme-btn-secondary inline-flex items-center gap-2 px-5 py-3.5 font-medium text-sm"
               >
                 <Mail size={16} />
                 <span>Contact</span>
@@ -192,19 +235,19 @@ export const Index: React.FC = () => {
             {personalInfo.stats.map((stat, i) => (
               <div
                 key={stat.label}
-                className="ios-glass-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between"
+                className="theme-card p-4 sm:p-5 flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between text-muted-foreground text-xs mb-3">
                   <span className="font-mono uppercase tracking-wider text-[10px]">
                     {stat.label}
                   </span>
-                  {i === 0 && <Layers size={14} className="text-blue-500" />}
-                  {i === 1 && <Database size={14} className="text-indigo-500" />}
-                  {i === 2 && <Code2 size={14} className="text-purple-500" />}
-                  {i === 3 && <Sparkles size={14} className="text-emerald-500" />}
+                  {i === 0 && <Layers size={14} className="theme-accent-text" />}
+                  {i === 1 && <Database size={14} className="theme-accent-2-text" />}
+                  {i === 2 && <Code2 size={14} className="theme-accent-text" />}
+                  {i === 3 && <Sparkles size={14} style={{ color: "var(--theme-status)" }} />}
                 </div>
                 <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                  <div className="theme-stat-value text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
                     {stat.value}
                   </div>
                   <div className="text-xs text-muted-foreground mt-0.5">
@@ -228,7 +271,7 @@ export const Index: React.FC = () => {
             className="flex items-end justify-between mb-8 sm:mb-10"
           >
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-medium mb-2">
+              <div className="theme-badge-accent inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium mb-2">
                 <Workflow size={13} />
                 <span>Featured Systems</span>
               </div>
@@ -262,18 +305,24 @@ export const Index: React.FC = () => {
                 <Link
                   to={`/projects/${project.slug}`}
                   onClick={() => sound.playPop()}
-                  className="ios-glass-card-hover p-4 sm:p-5 flex flex-col gap-3.5 h-full rounded-3xl group cursor-pointer"
+                  className="theme-card-hover p-4 sm:p-5 flex flex-col gap-3.5 h-full group cursor-pointer"
                 >
                   {project.image && (
-                    <div className="relative rounded-2xl overflow-hidden border border-border/50 aspect-video bg-black/5 dark:bg-black/30">
+                    <div
+                      className="theme-media-frame relative overflow-hidden border border-border/50 aspect-video bg-black/5 dark:bg-black/30"
+                      style={{ borderRadius: "var(--theme-radius-md)" }}
+                    >
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="theme-media-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
                       {project.badge && (
-                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full ios-glass border border-white/40 dark:border-white/10 text-[10px] font-mono font-medium text-foreground shadow-sm">
+                        <span
+                          className="absolute top-2.5 left-2.5 px-2.5 py-0.5 theme-surface text-[10px] font-mono font-medium text-foreground shadow-sm"
+                          style={{ borderRadius: "var(--theme-radius-pill)" }}
+                        >
                           {project.badge}
                         </span>
                       )}
@@ -281,11 +330,11 @@ export const Index: React.FC = () => {
                   )}
 
                   <div className="flex-1 flex flex-col">
-                    <h3 className="font-semibold text-foreground text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                    <h3 className="font-semibold text-foreground text-base group-hover:text-[var(--theme-accent)] transition-colors flex items-center justify-between">
                       <span>{project.title}</span>
                       <ArrowUpRight
                         size={15}
-                        className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-blue-500"
+                        className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all theme-accent-text"
                       />
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-1.5 line-clamp-3">
@@ -297,13 +346,13 @@ export const Index: React.FC = () => {
                     {project.tech.slice(0, 3).map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-muted-foreground"
+                        className="theme-chip text-[10px] font-mono px-2 py-0.5 text-muted-foreground"
                       >
                         {t}
                       </span>
                     ))}
                     {project.tech.length > 3 && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full text-muted-foreground/60">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 text-muted-foreground/60">
                         +{project.tech.length - 3}
                       </span>
                     )}
@@ -325,7 +374,7 @@ export const Index: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-medium mb-2">
+            <div className="theme-badge-accent inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium mb-2">
               <Briefcase size={13} />
               <span>Career Trajectory</span>
             </div>
@@ -342,20 +391,25 @@ export const Index: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="ios-glass-card p-5 sm:p-6 rounded-3xl"
+                className="theme-card p-5 sm:p-6"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-3.5">
-                    <img
-                      src={exp.image}
-                      alt={exp.company}
-                      className="w-12 h-12 rounded-2xl object-cover ring-1 ring-border shadow-sm flex-shrink-0"
-                    />
+                    <div
+                      className="theme-media-frame w-12 h-12 overflow-hidden ring-1 ring-border shadow-sm flex-shrink-0"
+                      style={{ borderRadius: "var(--theme-radius-md)" }}
+                    >
+                      <img
+                        src={exp.image}
+                        alt={exp.company}
+                        className="theme-media-img w-full h-full object-cover"
+                      />
+                    </div>
                     <div>
                       <h3 className="font-semibold text-base text-foreground flex items-center gap-2">
                         {exp.role}
                         {exp.featured && (
-                          <span className="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-mono">
+                          <span className="theme-badge-accent px-2 py-0.5 text-[10px] font-mono">
                             Current
                           </span>
                         )}
@@ -366,7 +420,7 @@ export const Index: React.FC = () => {
                     </div>
                   </div>
 
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-muted-foreground self-start sm:self-center">
+                  <span className="theme-chip text-xs font-mono px-3 py-1 text-muted-foreground self-start sm:self-center">
                     {exp.time}
                   </span>
                 </div>
@@ -375,7 +429,10 @@ export const Index: React.FC = () => {
                   <ul className="mt-3.5 pt-3.5 border-t border-border/40 space-y-1.5 text-xs sm:text-sm text-muted-foreground">
                     {exp.description.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500/80 mt-1.5 flex-shrink-0" />
+                        <span
+                          className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
+                          style={{ backgroundColor: "var(--theme-accent)" }}
+                        />
                         <span className="leading-relaxed">{item}</span>
                       </li>
                     ))}
@@ -397,7 +454,7 @@ export const Index: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium mb-2">
+            <div className="theme-badge-accent inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium mb-2">
               <Cpu size={13} />
               <span>Technical Arsenal</span>
             </div>
@@ -414,7 +471,7 @@ export const Index: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="ios-glass-card p-5 rounded-3xl flex flex-col gap-3"
+                className="theme-card p-5 flex flex-col gap-3"
               >
                 <div className="flex items-center justify-between pb-2 border-b border-border/40">
                   <h3 className="font-semibold text-sm text-foreground">
@@ -432,10 +489,10 @@ export const Index: React.FC = () => {
                       whileHover={{ scale: 1.05, y: -1 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => sound.playTap()}
-                      className={`text-xs font-mono px-3 py-1.5 rounded-2xl cursor-default transition-all shadow-sm ${
+                      className={`text-xs font-mono px-3 py-1.5 cursor-default transition-all shadow-sm ${
                         skill.hot
-                          ? "ios-glass bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/25"
-                          : "bg-black/5 dark:bg-white/10 text-foreground border border-border/60 hover:bg-black/10 dark:hover:bg-white/15"
+                          ? "theme-chip-hot"
+                          : "theme-chip text-foreground"
                       }`}
                     >
                       {skill.name}
@@ -456,20 +513,22 @@ export const Index: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="ios-glass-card p-8 sm:p-14 text-center rounded-[36px] relative overflow-hidden"
+            className="theme-card p-8 sm:p-14 text-center relative overflow-hidden"
           >
             {/* Ambient liquid glow in CTA */}
             <div
-              className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-blue-500/25 blur-3xl pointer-events-none"
+              className="absolute -top-24 -left-24 w-72 h-72 rounded-full blur-3xl pointer-events-none opacity-20"
+              style={{ backgroundColor: "var(--theme-accent)" }}
               aria-hidden="true"
             />
             <div
-              className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-purple-500/25 blur-3xl pointer-events-none"
+              className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full blur-3xl pointer-events-none opacity-20"
+              style={{ backgroundColor: "var(--theme-accent-2)" }}
               aria-hidden="true"
             />
 
             <div className="relative z-10 space-y-4 max-w-lg mx-auto">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-medium">
+              <span className="theme-badge-accent inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium">
                 <Sparkles size={13} />
                 <span>Let's Build</span>
               </span>
@@ -486,7 +545,7 @@ export const Index: React.FC = () => {
                 <Link
                   to="/contact"
                   onClick={() => sound.playPop()}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium text-sm shadow-[0_4px_20px_rgba(59,130,246,0.35)] hover:scale-105 active:scale-95 transition-all"
+                  className="theme-btn-primary inline-flex items-center gap-2 px-7 py-3.5 text-sm"
                 >
                   <Mail size={16} />
                   <span>Start a Conversation</span>
@@ -496,9 +555,13 @@ export const Index: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass border border-white/50 dark:border-white/15 text-foreground font-medium text-sm hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all shadow-sm"
+                  className="theme-btn-secondary inline-flex items-center gap-2 px-6 py-3.5 font-medium text-sm"
                 >
-                  {copied ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} />}
+                  {copied ? (
+                    <Check size={16} style={{ color: "var(--theme-status)" }} />
+                  ) : (
+                    <Copy size={16} />
+                  )}
                   <span>{copied ? "Copied!" : "Copy Email"}</span>
                 </button>
               </div>
