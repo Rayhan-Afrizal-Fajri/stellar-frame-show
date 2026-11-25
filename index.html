@@ -34,8 +34,9 @@
           var stored = localStorage.getItem("portfolio_theme");
           var legacy = localStorage.getItem("theme");
           var chosen = "liquid-dark";
-          if (q && valid[q]) chosen = q;
-          else if (stored && valid[stored]) chosen = stored;
+          var has = Object.prototype.hasOwnProperty;
+          if (q && has.call(valid, q)) chosen = q;
+          else if (stored && has.call(valid, stored)) chosen = stored;
           else if (legacy === "light") chosen = "liquid-light";
 
           var fx = localStorage.getItem("portfolio_fx");
